@@ -7,13 +7,13 @@
 \usepackage[top=1in, bottom=1in, left=1in, right=1in]{geometry}
 \usepackage{float}
 \usepackage{pdfpages}
+\usepackage{enumitem}
 
-\usepackage{hyperref} % lisääthän omat pakettisi ENNEN hyperref'iä
+\usepackage{hyperref}
 \hypersetup{pdfborder={0 0 0}}
 \onehalfspacing
 \cfoot{}
 \rhead{\thepage}
-% asettaa nyk. kappaleen nimen vasempaan ylänurkkaan, saa poistaa jos haluaa
 \lhead{\leftmark}
 
 \title{Tsoha\\ Kurssikysely \vspace{0.5em}}
@@ -41,25 +41,32 @@ Kurssin luennoitsija voi lisätä, poistaa ja muokata kurssikohtaisia kysymyksi�
 
 Laitos ja tiedekunta voivat hakea yhteenvedon kurssin tai kurssien kysymysten tuloksista kuten vastaajamääristä tai tiettyyn kysymykseen saaduista vastauksista. Kurssin pitäjä saa järjestelmästä yksinkertaisen raportin kyselyn tuloksista aina halutessaan.
 
-%\begin{figure}
-%   \centering
-%   \begin{subfigure}[b]{0.45\textwidth}
-%       \includegraphics[height=7.9cm]{../kuvat/amr-grid.png}
-%   \end{subfigure}
-%   \begin{subfigure}[b]{0.45\textwidth}
-%       \includegraphics[height=7.9cm]{../kuvat/amr-nogrid.png}
-%   \end{subfigure}
-%   \caption{No kuvahan se siinä}\label{fig:enzogrid}
-%\end{figure}
-
 
 \section{Yleiskuva järjestelmästä}
-\subsection{Käyttötapauskaavio}
-Käyttötapauskaavio näyttää järjestelmän sidosryhmät ja miten ne liittyvät järjestelmään. Tällä kurssilla kehitettävissä järjestelmissä sidosryhminä ovat enimmäkseen järjestelmän käyttäjäryhmät. Muita mahdollisia sidosryhmiä olisivat esimerkiksi toiset järjestelmät. Harjoitustyössä käyttäjäryhmien tulisi osaltaan näkyä kyseisille ryhmille suunnattuina toiminnallisuuksia.
+\subsection{Käyttötapaukset ja käyttäjät}
+Järjestelmää käyttävät opiskelijat, opettajat ja laitoksen sekä tiedekunnan hallintohenkilöt. Näistä kaikki voivat kirjautua järjestelmään ja tarkastella kyselyitä. Näkyvät kyselyt ja niille tehtävissä olevat operaatiot riippuvat kuitenkin käyttäjäryhmästä.
 
-Käyttötapauskaaviossa käyttötapaukset kuvataan järjestelmän sisällä ja sidosryhmien yhteydet järjestelmään esitetään yhteyksinä käyttötapauksiin. Kaavion kuvaa järjestelmästä voisi kuvailla esimerkiksi “Tällaisia asioita järjestelmässä voi tehdä, ja nämä ryhmät tekevät näitä asioita”.
+Ainoastaan opiskelijat voivat vastata kyselyihin ja he näkevät kyselyt vain sellaisista kursseista, joilla he ovat parhaillaan.
 
-Kaavion lisäksi käyttäjäryhmät sekä tärkeimmät käyttötapaukset kuvaillaan erikseen myös tekstinä.
+%\begin{description}[style=nextline]
+%	\item[Tiedekunnan hallintohenkilo] 
+%	\item[Laitoksen hallintohenkilo] fds
+%	\item[Opettaja] fdas
+%	\item[Opiskelija] fdas
+%\end{description}
+
+%Heistä kaikki voivat kirjautua järjestelmään ja selata kyselyjä. Lisäksi jokaisella käyttäjäryhmällä on 
+
+%Näistä kaikki voivat kirjautua järjestelmään ja tarkastella kyselyitä, joskin näkyvien kyselyiden määrä riippuu käyttäjästä. Lisäksi hallintohenkilöt ja opettajat pystyvät tarkastelemaan kyselyjen tuloksia käyttäjäryhmän määräämällä tarkkuudella sekä muokkaamaan omalle organisaatiotasolleen spesifejä kysymyksiä. Laitoksen hallintohenkilöstö luo ja ylläpitää kursseja, minkä jälken kurssin vastuuopettaja pystyy luomaan, muokkaamaan ja poistamaan omiin kursseihinsa liittyviä kyselyitä.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{kuvat/kayttotapauskaavio.jpg}
+   \caption{No kuvahan se siinä}\label{fig:kayttotapauskaavio}
+\end{figure}
+
+
+
 
 \section{Järjestelmän tietosisältö}
 
