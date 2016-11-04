@@ -43,30 +43,25 @@ Laitos ja tiedekunta voivat hakea yhteenvedon kurssin tai kurssien kysymysten tu
 
 
 \section{Yleiskuva järjestelmästä}
-\subsection{Käyttötapaukset ja käyttäjät}
-Järjestelmää käyttävät opiskelijat, opettajat ja laitoksen sekä tiedekunnan hallintohenkilöt. Näistä kaikki voivat kirjautua järjestelmään ja tarkastella kyselyitä. Näkyvät kyselyt ja niille tehtävissä olevat operaatiot riippuvat kuitenkin käyttäjäryhmästä.
-
-Ainoastaan opiskelijat voivat vastata kyselyihin ja he näkevät kyselyt vain sellaisista kursseista, joilla he ovat parhaillaan.
-
-%\begin{description}[style=nextline]
-%	\item[Tiedekunnan hallintohenkilo] 
-%	\item[Laitoksen hallintohenkilo] fds
-%	\item[Opettaja] fdas
-%	\item[Opiskelija] fdas
-%\end{description}
-
-%Heistä kaikki voivat kirjautua järjestelmään ja selata kyselyjä. Lisäksi jokaisella käyttäjäryhmällä on 
-
-%Näistä kaikki voivat kirjautua järjestelmään ja tarkastella kyselyitä, joskin näkyvien kyselyiden määrä riippuu käyttäjästä. Lisäksi hallintohenkilöt ja opettajat pystyvät tarkastelemaan kyselyjen tuloksia käyttäjäryhmän määräämällä tarkkuudella sekä muokkaamaan omalle organisaatiotasolleen spesifejä kysymyksiä. Laitoksen hallintohenkilöstö luo ja ylläpitää kursseja, minkä jälken kurssin vastuuopettaja pystyy luomaan, muokkaamaan ja poistamaan omiin kursseihinsa liittyviä kyselyitä.
+Järjestelmää käyttävät opiskelijat, opettajat ja laitoksen sekä tiedekunnan hallintohenkilöt. Näistä kaikki voivat kirjautua järjestelmään ja tarkastella kyselyitä. Näkyvät kyselyt ja niille tehtävissä olevat operaatiot riippuvat kuitenkin käyttäjäryhmästä. Käyttö\-tapaus\-kaavio on nähtävillä kuvassa \ref{fig:kayttotapauskaavio}.
 
 \begin{figure}
    \centering
    \includegraphics[width=\textwidth]{kuvat/kayttotapauskaavio.jpg}
-   \caption{No kuvahan se siinä}\label{fig:kayttotapauskaavio}
+   \caption{Järjestelmän käyttötapauskaavio}\label{fig:kayttotapauskaavio}
 \end{figure}
 
+Jokaisen käyttäjäryhmän käyttäjät voivat kirjautua palveluun ja selata kyselyitä. Käyttäjälle näytettävä valikoima kuitenkin vaihtelee: opiskelija näkee ainoastaan avoimet kyselyt niiltä kursseilta, joilla on osallistujana, opettaja ainoastaan omien kurssiensa kyselyt ja laitoksen hallintohenkilöt ainoastaan oman laitoksen kurssit. Tiedekunnan hallintohenkilöt puolestaan näkevät kaikkien kurssien kyselyt. Kyselyihin pystyy vastaamaan ainoastaan opiskelija.
 
+Tiedekuntakohtaisten kysymysten luomisesta sekä tarvittaessa muokkaamisesta ja poistamisesta vastaa tiedekunnan hallintohenkilö. Tätä varten kysymykset on toki voitava myös listata, vaikka sitä ei ole piirretty näkyviin käyttötapauskaavioon. Lisäksi tiedekunnan hallintohenkilö voi tulostaa nähtävilleen yhteenvedon kyselyiden tuloksista.
 
+Laitoksen hallintohenkilöt vastaavat laitoskohtaisten kysymysten luomisesta, muokkaamisesta ja poistamisesta. Heidän tehtävänään on pitää esimerkiksi kurssin vastuuopettajatiedot ajantasaisina. Lisäksi he luovat uudet kurssit ja hoitavat muuttuneiden kurssitietojen muokkaamisen tai valikoimasta poistuneiden kurssien poistamisen. Vastaavasti kuin tiedekuntakohtaisissa kysymyksissä, laitoksen hallintohenkilöt voivat tarkastella laitoskohtaisiin kysymyksiin saatujen vastausten yhteenvetoja.
+
+Kurssin opettaja voi lisätä omille kursseilleen kyselyitä. Niitä voi myös muokata tai poistaa, ei kuitenkaan silloin, kun ne ovat avoimina eli opiskelijat voivat vastana niihin. Myös opettaja voi pyytää yhteenvetoraportin jonkin kyselyn tuloksista. Koska esimerkiksi tekstimuotoisten kysymysten tapauksessa on yksittäisten vastausten tarkasteleminen tarpeen, voidaan myös yksittäisen kurssin kyselyn kaikki vastaukset näyttää yksityiskohtaisessa raportissa.
+
+Yhteenvetoraporttia tulostettaessa laitoksen ja tiedekunnan hallintohenkilöt näkevät aina omalle organisaatiotasolleen spesifien kysymysten vastausten keskiarvot ja -hajonnat sekä vastaajamäärät. Näkymä voidaan haluttaessa järjestää tietyn kysymyksen vastausten perusteella. Tästä syystä tiedekunta- tai laitoskohtaisten kysymysten vastaukset voivat olla ainoastaan numeerisia.
+
+Vastaavasti opettaja voi tulostaa yhteenvetoraportin tietyn kyselyn vastauksista, jolloin hän saa nähtäväkseen kustakin kyselyn kysymyksestä vastauksien keskiarvon ja keskihajonnan. Opettaja voi halutessaan tarkastella myös yksityiskohtaisia raportteja kursseistaan, jolloin hän saa nähtäväkseen kyselyn kunkin kysymyksen vastausjakauman (monivalintakysymykset) tai kaikki annetut vastaukset (aviomet kysymykset).
 
 \section{Järjestelmän tietosisältö}
 
