@@ -1,7 +1,7 @@
 # Tietokantasovelluksen esittelysivu
-
-[Sovellus](http://aajarven.users.cs.helsinki.fi/tsoha/)
-[Dokumentaatio](https://github.com/aajarven/Tsoha-Bootstrap/raw/master/doc/dokumentaatio.pdf)
+## Linkkejä
+* [Sovellus](http://aajarven.users.cs.helsinki.fi/tsoha/)
+* [Dokumentaatio](https://github.com/aajarven/Tsoha-Bootstrap/raw/master/doc/dokumentaatio.pdf)
 
 ## Työn aihe
 Työn tavoitteena on toteuttaa kurssikyselyjärjestelmä, jonka avulla opiskelijoilta voidaan kerätä palautetta kursseista. Järjestelmää voidaan käyttää koko tiedekunnassa ja kyselyt sisältävätkin sekä koko tiedekunnan laajuisia kysymyksiä että laitos- ja kurssikohtaisia kysymyksiä. Kysymysten vastaukset voivat olla avoimia tai ne voidaan valita numeroasteikolta tai muusta annetusta arvojoukosta.
