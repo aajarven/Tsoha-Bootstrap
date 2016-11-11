@@ -1,16 +1,30 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+  <h1>Kyselyt</h1>
+
+  <p>
+      Lyhyt ohje järjestelmän käyttöön. Lorem ipsum jne.
+  </p>
+
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <th>Kurssikoodi</th>
+        <th>Kurssin nimi</th>
+        <th>Kurssin alku</th>
+        <th>Kurssin loppu</th>
+        <th><!--Vastaa--></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>715517</td>
+        <td><a href="https://www.cs.helsinki.fi/courses/58131/2016/k/k/1">Toinen kurssi</a></td>
+        <td>1.11.2016</td>
+        <td>30.11.2016</td>
+        <th><a class="btn btn-success" href="/kysely">Vastaa</a></th>
+      </tr>
+    </tbody>
+  </table>
+{% endblock %}

@@ -43,3 +43,7 @@ $routes->get('/muokkaus-kysely', function() {
 $routes->get('/muokkaus-kysymys', function() {
     HelloWorldController::muokkaus_kysymys();
 });
+
+$routes->get('/kysely', function() {
+    HelloWorldController::kysely();
+});
