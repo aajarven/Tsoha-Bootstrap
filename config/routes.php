@@ -47,3 +47,11 @@ $routes->get('/muokkaus-kysymys', function() {
 $routes->get('/kysely', function() {
     HelloWorldController::kysely();
 });
+
+$routes->get('/muokkaus-kysymyspaletti', function() {
+    HelloWorldController::muokkaus_kysymyspaletti();
+});
+
+$routes->get('/muokkaus-kurssi', function() {
+    HelloWorldController::muokkaus_kurssi();
+});

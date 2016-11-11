@@ -50,4 +50,12 @@ class HelloWorldController extends BaseController {
     public static function kysely() {
         View::make('suunnitelmat/kysely.html');
     }
+    
+    public static function muokkaus_kysymyspaletti() {
+        View::make('suunnitelmat/muokkaus-kysymyspaletti.html');
+    }
+    
+    public static function muokkaus_kurssi() {
+        View::make('suunnitelmat/muokkaus-kurssi.html');
+    }
 }
