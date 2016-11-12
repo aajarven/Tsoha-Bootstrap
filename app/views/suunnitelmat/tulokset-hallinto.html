@@ -1,16 +1,62 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Palauteyhteenveto</h1>
+<p>
+    Tämä näyttää samalta sekä laitoksen että tiedekunnan näkymässä, ainoana erona näkyvät kurssit. TODO: sorttausoptiot, suodatusoptiot
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Kurssikoodi</th>
+            <th>Kurssi</th>
+            <th>Alkamispäivä</th>
+            <th>Päättymisspäivä</th>
+            <th>Minkä kokonaisarvosanan antaisit kurssille</th>
+            <th>Minkä kokonaisarvosanan antaisit laskaritilaisuuksille</th>
+            <th>Kolmas kysymys</th>
+            <th>Neljäs kysymys</th>
+            <th>Viides kysymys</th>
+            <th>Vastausprosentti</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <th>012345</th>
+            <th><a href="https://www.cs.helsinki.fi/courses/58131/2016/k/k/1">Tietorakenteet ja algoritmit</a></th>
+            <th>3.5.2011</th>
+            <th>6.6.2011</th>
+            <th>3,5</th>
+            <th>3,6</th>
+            <th>2,5</th>
+            <th>4,6</th>
+            <th>2,5</th>
+            <th>64</th>
+        </tr>
+        <tr>
+            <th>715517</th>
+            <th><a href="https://www.cs.helsinki.fi/courses/58131/2016/k/k/1">Toinen kurssi</a></th>
+            <th>1.1.2015</th>
+            <th>2.2.2015</th>
+            <th>3,4</th>
+            <th>3,7</th>
+            <th>2,8</th>
+            <th>3,3</th>
+            <th>2,2</th>
+            <th>71</th>
+        </tr>
+        <tr>
+            <th>15071551</th>
+            <th><a href="https://www.cs.helsinki.fi/courses/58131/2016/k/k/1">Kolmas kurssi (pitkänniminen)</a></th>
+            <th>3.3.2016</th>
+            <th>4.4.2016</th>
+            <th>3,4</th>
+            <th>3,7</th>
+            <th>2,8</th>
+            <th>3,3</th>
+            <th>2,2</th>
+            <th>71</th>
+        </tr>
+</table>
+{% endblock %}
