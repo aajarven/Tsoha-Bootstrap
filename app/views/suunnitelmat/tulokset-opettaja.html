@@ -1,16 +1,205 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Kurssin nimi</h1>
+<dl>
+    <dt>Alkamispäivä</dt>
+    <dd>1.1.2016</dd>
+    <dt>Päättymispäivä</dt>
+    <dd>1.4.2016</dd>
+    <dt>Kyselyn tila</dt>
+    <dd>Päättynyt</dd>
+</dl>
+
+<p>
+    TODO: muotoilut avoimille kysymyksille: avausnappuloiden ei pitäisi näyttää noin nappuloilta, vastausten pitäisi erottua toisistaan selvemmin, tilaa hengittää
+</p>
+
+<h2>Numeeriset monivalintakysymykset</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Kysymys</th>
+            <th>1 (%)</th>
+            <th>2 (%)</th>
+            <th>3 (%)</th>
+            <th>4 (%)</th>
+            <th>5 (%)</th>
+            <th>EOS (%)</th>
+            <th>Keskiarvo</th>
+            <th>Mediaani</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Minkä kokonaisarvosanan antaisit kurssille?</td>
+            <td>2</td>
+            <td>13</td>
+            <td>41</td>
+            <td>23</td>
+            <td>19</td>
+            <td>2</td>
+            <td>2,7</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>Minkä kokonaisarvosanan antaisit laskaritilaisuuksille?</td>
+            <td>0</td>
+            <td>9</td>
+            <td>12</td>
+            <td>45</td>
+            <td>33</td>
+            <td>1</td>
+            <td>4,1</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>Minkä kokonaisarvosanan antaisit laskaritilaisuuksille?</td>
+            <td>0</td>
+            <td>9</td>
+            <td>12</td>
+            <td>45</td>
+            <td>33</td>
+            <td>1</td>
+            <td>4,1</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>Minkä kokonaisarvosanan antaisit laskaritilaisuuksille?</td>
+            <td>0</td>
+            <td>9</td>
+            <td>12</td>
+            <td>45</td>
+            <td>33</td>
+            <td>1</td>
+            <td>4,1</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>Minkä kokonaisarvosanan antaisit laskaritilaisuuksille?</td>
+            <td>0</td>
+            <td>9</td>
+            <td>12</td>
+            <td>45</td>
+            <td>33</td>
+            <td>1</td>
+            <td>4,1</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>Minkä kokonaisarvosanan antaisit laskaritilaisuuksille?</td>
+            <td>0</td>
+            <td>9</td>
+            <td>12</td>
+            <td>45</td>
+            <td>33</td>
+            <td>1</td>
+            <td>4,1</td>
+            <td>4</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Muut monivalintakysymykset</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Kurssi oli kiinnostava</th>
+            <th>%</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Täysin eri mieltä</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Jonkin verran eri mieltä</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>Ei samaa eikä eri mieltä</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>Jonkin verran samaa mieltä</td>
+            <td>64</td>
+        </tr>
+        <tr>
+            <td>Täysin samaa mieltä</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>En osaa sanoa</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Kurssin ilmapiiri oli innostava</th>
+            <th>%</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Täysin eri mieltä</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Jonkin verran eri mieltä</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>Ei samaa eikä eri mieltä</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>Jonkin verran samaa mieltä</td>
+            <td>64</td>
+        </tr>
+        <tr>
+            <td>Täysin samaa mieltä</td>
+            <td>6</td>
+        </tr>
+        <tr>
+            <td>En osaa sanoa</td>
+            <td>2</td>
+        </tr>
+    </tbody>
+</table>
+
+
+<h2>Avoimet kysymykset</h2>
+<div class="avoinkysymys">
+    <button type="button" class="btn" data-toggle="collapse" data-target="#avoin1">Mikä oli parasta kurssilla?</button>
+    <div id="avoin1" class="collapse">
+        <div class="avoinvastaus">Lorem ipsum jne</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+        <div class="avoinvastaus">Lorem ipsum jne</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+    </div>
+</div>
+
+<div class="avoinkysymys">
+    <button type="button" class="btn" data-toggle="collapse" data-target="#avoin2">Mitä söit tänään aamupalaksi?</button>
+    <div id="avoin2" class="collapse">
+        <div class="avoinvastaus">Lorem ipsum jne</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+        <div class="avoinvastaus">Lorem ipsum jne</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet</div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+        <div class="avoinvastaus">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed volutpat velit eget fermentum fringilla. Suspendisse lobortis magna lorem, quis rhoncus metus tincidunt vel. Sed eu urna sit amet urna pharetra interdum sit amet a elit. Maecenas nibh nunc, congue eu mollis vestibulum, facilisis quis quam. Praesent eu lectus eget massa tristique ullamcorper. Maecenas nec luctus orci. Nullam eget ornare sem, id efficitur sapien. In dui enim, dictum et turpis eget, posuere dictum libero. Maecenas a volutpat ex, sed varius purus. Aenean at auctor arcu, id accumsan lorem. Cras nec enim non leo varius commodo. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In arcu nisl, porta eget placerat id, consectetur vitae lorem. Nunc nec tincidunt felis. </div>
+    </div>
+</div>
+{% endblock %}
