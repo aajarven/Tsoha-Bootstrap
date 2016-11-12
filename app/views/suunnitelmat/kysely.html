@@ -1,16 +1,46 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Kiinnostava kurssi</h1>
+<p>Lyhyet ohjeet. Todo: br on varmaan ruma tapa, miten tehdä paremmin
+    
+<form>
+    <div class="form-group">
+        <label>Minkä kokonaisarvosanan antaisit kurssille?</label></br>
+        <input type="radio" name="kurssiarvosana" value="1"> 1</br>
+        <input type="radio" name="kurssiarvosana" value="2"> 2</br>
+        <input type="radio" name="kurssiarvosana" value="3"> 3</br>
+        <input type="radio" name="kurssiarvosana" value="4"> 4</br>
+        <input type="radio" name="kurssiarvosana" value="5"> 5</br>
+        <input type="radio" name="kurssiarvosana" value="EOS"> En osaa/halua vastata</br>
+    </div>
+
+    <div class="form-group">
+        <label>Minkä kokonaisarvosanan antaisit laskaritilaisuuksille?</label></br>
+        <input type="radio" name="laskariarvosana" value="1"> 1</br>
+        <input type="radio" name="laskariarvosana" value="2"> 2</br>
+        <input type="radio" name="laskariarvosana" value="3"> 3</br>
+        <input type="radio" name="laskariarvosana" value="4"> 4</br>
+        <input type="radio" name="laskariarvosana" value="5"> 5</br>
+        <input type="radio" name="laskariarvosana" value="EOS"> En osaa/halua vastata</br>
+    </div>
+
+    <div class="form-group">
+        <label>Opetus oli innostavaa</label></br>
+        <input type="radio" name="innostavuus" value="1"> Ei ollenkaan samaa mieltä</br>
+        <input type="radio" name="innostavuus" value="2"> Jonkin verran samaa mieltä</br>
+        <input type="radio" name="innostavuus" value="3"> Ei samaa eikä eri mieltä</br>
+        <input type="radio" name="innostavuus" value="4"> Jonkin verran samaa mieltä</br>
+        <input type="radio" name="innostavuus" value="5"> Täysin samaa mieltä</br>
+        <input type="radio" name="innostavuus" value="EOS"> En osaa/halua vastata</br>
+    </div>
+
+    <div class="form-group">
+        <label>Kerro yleisesti kokemuksistasi kurssista</label></br>
+        <textarea class="form-control" rows="5" id="kokemukset"></textarea>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Tallenna</button>
+    </div>
+</form>
+{% endblock %}
