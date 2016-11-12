@@ -1,16 +1,39 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<h1>Laitoksen/tiedekunnan kysymykset</h1>
+
+<p>TODO: lisää kysymys avaamaan popup, jossa voi antaa kysymykselle nimen, samoin muokkaa-nappi. Otsikko riippumaan käyttäjäryhmästä.</p>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Kysymys</th>
+            <th>Muokkaa</th>
+            <th>Poista</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <!-- Kurssit -->
+        <tr>
+            <td>Mikä oli parasta kurssilla?</td>
+            <td><a class="btn btn-success" href="">Muokkaa</a></th></td>
+            <td><a class="btn btn-danger" href="#">Poista</a></th></td>
+        </tr>
+        <tr>
+            <td>Minkä kokonaisarvosanan antaisit kurssille?</td>
+            <td><a class="btn btn-success" href="">Muokkaa</a></th></td>
+            <td><a class="btn btn-danger" href="#">Poista</a></th></td>
+        </tr>
+        <tr>
+            <td>Minkä viikon laskareista opit eniten?</td>
+            <td><a class="btn btn-success" href="">Muokkaa</a></th></td>
+            <td><a class="btn btn-danger" href="#">Poista</a></th></td>
+        </tr>
+    </tbody>
+</table>
+
+<p>
+    <a href="#" class="btn btn-success">Lisää kysymys</a>
+</p>
+{% endblock %}
