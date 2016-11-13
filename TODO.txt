@@ -1,0 +1,2 @@
+[ ] Kurssien lisääminen/poisto/muokkaus
+[ ] Näkymissä listatut todot
