@@ -6,49 +6,43 @@ CREATE TABLE Monivalintavaihtoehto (
 );
 
 CREATE TABLE Organisaatio (
-  organisaatioID INTEGER,
-  nimi varchar(150) NOT NULL,
-  PRIMARY KEY (organisaatioID)
+  organisaatioID SERIAL PRIMARY KEY,
+  nimi varchar(150) NOT NULL
 );
 
 CREATE TABLE KayttajaRyhma (
-  ryhmäID INTEGER,
-  nimi varchar(150) NOT NULL,
-  PRIMARY KEY (ryhmäID)
+  ryhmaID SERIAL PRIMARY KEY,
+  nimi varchar(150) NOT NULL
 );
 
 CREATE TABLE Kayttaja (
-  ID INTEGER,
-  sähköposti varchar(256) NOT NULL,
+  ID SERIAL PRIMARY KEY,
+  sahkoposti varchar(256) NOT NULL,
   salasanaHash varchar(256) NOT NULL,
-  suola varchar(16) NOT NULL,
-  PRIMARY KEY (ID)
+  suola varchar(16) NOT NULL
 );
 
 CREATE TABLE Kurssi (
-  ID INTEGER,
+  ID SERIAL PRIMARY KEY,
   nimi varchar(150) NOT NULL,
   organisaatioID INTEGER NOT NULL,
   kotisivu varchar(500),
   alkamispäivä DATE NOT NULL,
   päättymispäivä DATE NOT NULL,
-  PRIMARY KEY (ID),
   FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID)
 );
 
 CREATE TABLE Kysely (
-  ID INTEGER,
+  ID SERIAL PRIMARY KEY,
   kurssiID INTEGER NOT NULL,
-  PRIMARY KEY (ID),
   FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
 );
 
 CREATE TABLE Kysymys (
-  ID INTEGER,
+  ID SERIAL PRIMARY KEY,
   organisaatioID INTEGER,
   kyselyID INTEGER,
   tyyppi varchar(30) NOT NULL,
-  PRIMARY KEY (ID),
   FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID),
   FOREIGN KEY (kyselyID) REFERENCES Kysely (ID)
 );
@@ -78,7 +72,8 @@ CREATE TABLE RyhmäJäsenyys (
   organisaatioID INTEGER,
   PRIMARY KEY (kayttajaID, ryhmaID, organisaatioID),
   FOREIGN KEY (kayttajaID) REFERENCES Kayttaja (ID),
-  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
+  FOREIGN KEY (ryhmaID) REFERENCES KayttajaRyhma (ryhmaID),
+  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID)
 );
 
 CREATE TABLE KurssinOsallistuja (
