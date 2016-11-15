@@ -7,3 +7,4 @@ dokumentaatio.toc
 doc/kuvat/raakakuvat/*
 /nbproject/private/
 doc/dokumentaatio.tex.bak
+doc/.fuse_hidden*
