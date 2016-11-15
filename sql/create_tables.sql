@@ -11,7 +11,7 @@ CREATE TABLE Organisaatio (
   PRIMARY KEY (organisaatioID)
 );
 
-CREATE TABLE KäyttäjäRyhmä (
+CREATE TABLE KayttajaRyhma (
   ryhmäID INTEGER,
   nimi varchar(150) NOT NULL,
   PRIMARY KEY (ryhmäID)
@@ -20,14 +20,14 @@ CREATE TABLE KäyttäjäRyhmä (
 CREATE TABLE Kayttaja (
   ID INTEGER,
   sähköposti varchar(256) NOT NULL,
-  salasanaHash varchar(16) NOT NULL,
-  suola String NOT NULL,
+  salasanaHash varchar(256) NOT NULL,
+  suola varchar(16) NOT NULL,
   PRIMARY KEY (ID)
 );
 
 CREATE TABLE Kurssi (
   ID INTEGER,
-  nimi String NOT NULL,
+  nimi varchar(150) NOT NULL,
   organisaatioID INTEGER NOT NULL,
   kotisivu varchar(500),
   alkamispäivä DATE NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE Kysely (
   ID INTEGER,
   kurssiID INTEGER NOT NULL,
   PRIMARY KEY (ID),
-  FOREIGN KEY kurssiID REFERENCES Kurssi (ID)
+  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
 );
 
 CREATE TABLE Kysymys (
@@ -49,8 +49,8 @@ CREATE TABLE Kysymys (
   kyselyID INTEGER,
   tyyppi varchar(30) NOT NULL,
   PRIMARY KEY (ID),
-  FOREIGN KEY organisaatioID REFERENCES Organisaatio (organisaatioID),
-  FOREIGN KEY kyselyID REFERENCES Kysely (ID)
+  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID),
+  FOREIGN KEY (kyselyID) REFERENCES Kysely (ID)
 );
 
 CREATE TABLE Monivalintavastaus (
@@ -73,11 +73,11 @@ CREATE TABLE AvoinVastaus (
 );
 
 CREATE TABLE RyhmäJäsenyys (
-  käyttäjäID INTEGER,
-  ryhmäID INTEGER,
+  kayttajaID INTEGER,
+  ryhmaID INTEGER,
   organisaatioID INTEGER,
   PRIMARY KEY (kayttajaID, ryhmaID, organisaatioID),
-  FOREIGN KEY (henkiloID) REFERENCES Kayttaja (ID),
+  FOREIGN KEY (kayttajaID) REFERENCES Kayttaja (ID),
   FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
 );
 
