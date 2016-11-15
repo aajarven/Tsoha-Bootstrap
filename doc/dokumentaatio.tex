@@ -8,6 +8,7 @@
 \usepackage{float}
 \usepackage{pdfpages}
 \usepackage{enumitem}
+\usepackage{tabularx}
 
 \usepackage{hyperref}
 \hypersetup{pdfborder={0 0 0}}
@@ -88,8 +89,143 @@ Järjestelmää käyttävät opiskelijat, opettajat ja laitoksen sekä tiedekunn
 %Vastaavasti opettaja voi tulostaa yhteenvetoraportin tietyn kyselyn vastauksista, jolloin hän saa nähtäväkseen kustakin kyselyn kysymyksestä vastauksien keskiarvon ja keskihajonnan. Opettaja voi halutessaan tarkastella myös yksityiskohtaisia raportteja kursseistaan, jolloin hän saa nähtäväkseen kyselyn kunkin kysymyksen vastausjakauman (monivalintakysymykset) tai kaikki annetut vastaukset (aviomet kysymykset).
 
 \section{Järjestelmän tietosisältö}
+\begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{kuvat/kasitekaavio.png}
+   \caption{Käsitekaavio järjestelmään tallennettavasta tiedosta}\label{fig:kasitekaavio}
+\end{figure}
+
+Järjestelmän tietosisältö on esitetty kuvassa \ref{fig:kasitekaavio}. Tarkemmat esittelyt kustakin käsitekaavion tietokohteesta ovat nähtävissä alla sekä taulukoissa \ref{tietokohde_ensimmainen}--\ref{tietokohde_viimeinen}.
+
+Kukin järjestelmän käyttäjä kuuluu vähintään yhteen käyttäjäryhmään, joita ovat esimerkiksi opiskelija ja opettaja. Käyttäjäryhmän lisäksi jokainen henkilö kuuluu johonkin organisaatioon. Näitä ovat esimerkiksi eri laitokset sekä tiedekunta. Hallintohenkilöiden ja opettajien osalta organisaatio määräytyy työsopimuksen perusteella ja opiskelijoilla pääaineen. Tietokanta on suunniteltu sellaiseksi, että saman käyttäjän kuuluminen useaan käyttäjäryhmään ja/tai organisaatioon (esimerkiksi opettaja tietojenkäsittelytieteen laitoksella ja opiskelija fysiikan laitoksella) on mahdollista, mutta tämän työn puitteissa ei todennäköisesti ole ajankäytöllisesti järkevää toteuttaa tukea myös ohjelmalogiikalle.
+
+Kysely edustaa tietyn kurssin palautekyselyä. Kutakin kurssia kohden on yksi korkeintaan yksi kysely ja kukin kysely voi koostua mielivaltaisestsa määrästä kysymyksiä. Kukin kysymys kuuluu joko yhteen kyselyyn (kurssikohtaiset kysymykset) tai yhteen organisaatioon (laitos- tai tiedekuntakohtaiset kysymykset).
+
+Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysymys kuuluu kuitenkin vain yhteen kurssiin tai organisaatioon. Kysymykset voivat olla vastaustyypiltään joko avoimia vai monivalintoja. Mikäli kyseessä on avoimen vastauksen kysymys, tallennetaan siihen saadut vastaukset AvoinVastaus-tauluun, jossa on yksi rivi kunkin opiskelijan kutakin vastausta kohden. Mikäli kyseessä on monivalinta, sisältää taulu Monivalintavastaus opiskelijan valitseman vastausvaihtoehdon järjestysluvun, jonka perusteella voidaan Monivalintavaihtoehto-taulusta hakea kyseistä vastausta vastaava selkokielinen teksti.
+
+
+\begin{table}[h]
+\caption{Käyttäjä} \label{tietokohde_ensimmainen}
+\begin{tabularx}{\textwidth}{ | l X X |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  sähköposti & Merkkijono, korkeintaan 256 merkkiä & Käyttäjän sähköpostiosoite. Tätä käytetään viestinnän lisäksi kirjautumiseen. \\
+  salasanaHash & Merkkijono, käytetystä salausalgoritmista riippuva maksimipituus tarkentuu myöhemmin & Käyttäjän salasana suolattuna ja hashattynä\\
+  suola & Merkkijono, käytetystä salausalgoritmista riippuva maksimipituus tarkentuu myöhemmin & Käyttäjän salasanaa hashattaessa käytetty suola \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\caption{Käyttäjäryhmä}
+\begin{tabularx}{\textwidth}{|  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+   Nimi & Merkkijono, korkeintaan 150 merkkiä & Käyttäjäryhmän nimi, esimerkiksi "opiskelija" tai "opettaja" \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\caption{Organisaatio}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  Nimi & Merkkijono, korkeintaan 150 merkkiäg & Organisaation nimi, esimerkiksi "Matemaattis-luonnontieteellinen tiedekunta" tai "Fysiikan laitos" \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\caption{Kurssi}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  Nimi & Merkkijono, korkeintaan 150 merkkiä & Kurssin nimi, esimerkiksi "Aineopintojen harjoitustyö: Tietokantasovellus (periodi II)" \\
+  Kotisivu & Merkkijono, korkeintaan 500 merkkiä & Kurssin kotisivun URL. NULL, jos kurssilla ei ole kotisivua. \\
+  Alkamispäivä & Date, ei päättymispäivää myöhemmin & Kurssin alkamispäivä \\
+  Päättymispäivä & Date, ei alkamispäivää aiemmin & Kurssin päättymispäivä \\
+  \hline
+\end{tabularx}
+\end{table}
+
+
+\begin{table}[h]
+\caption{Kysely}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  Kurssi & Viite kurssiin & Kurssi, johon kysely kuuluu. \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\caption{Kysymys}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  OrganisaatioID & Viite organisaatioon tai NULL & Viite organisaatioon, mikäli kyseessä on organisaatiokohtainen (laitos tai tiedekunta) kysymys \\
+  KyselyID & Viite kyselyyn tai NULL & Viite kyselyyn, mikäli kyseessä on tiettyyn kyselyyn liittyvä kysymys \\
+  Tyyppi & Merkkijono, korkeintaan 30 merkkiä & Kysymyksen tyyppi, joko "avoin" tai "monivalinta"\\
+  \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\caption{Avoin vastaus}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  OpiskelijaID & Viite opiskelijaan & Vastauksen antanut opiskelija \\
+  KysymysID & Viite kysymykseen & Kysymys, johon vastaus liittyy \\
+  Vastaus & Merkkijono, korkeintaan 2000 merkkiä & Opiskelijan antama vastaus \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\caption{Monivalintavastaus}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  OpiskelijaID & Viite opiskelijaan & Vastauksen antanut opiskelija \\
+  KysymysID & Viite kysymykseen & Kysymys, johon vastaus liittyy \\
+  Järjestysluku & kokonaisluku & Monennenko vastausvaihtoehdon opiskelija on valinnut. Toimii foreign keynä yhdessä kysymysID:n kanssa \\
+  \hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\caption{Monivalintavaihtoehto} \label{tietokohde_viimeinen}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  KysymysID & Viite kysymykseen & Minkä kysymyksen vastausvaihtoehto on kyseessä \\
+  Järjestysluku & kokonaisluku & Monesko kysymyksen vastauksista on kyseessä. Vaikuttaa järjestykseen, jossa vaihtoehdot esitetään opiskelijalle ja toimii osana primary keytä. \\
+  Teksti & Merkkijono, korkeintaan 150 merkkiä & Teksti, joka opiskelijalle näytetään vastausvaihtoehtona \\
+  \hline
+\end{tabularx}
+\end{table}
+
 
 \section{Relaatiotietokantakaavio}
+Käsitekaavion perusteella rakennettu relaatiokaavio on nähtävissä kuvassa \ref{fig:krelaatiokaavio}. Siihen on lisätty tarvittavat liitostaulut ja siinä ovat nähtävissä myös taulujen primary keyt (osalla erikseen lisätty ID, jota ei ole tarpeettomana sisällytetty käsitekaavion yhteydessä esitettyihin taulukoihin). Lisäksi kuvassa on esitetty taulujen primary ja foreign keyt.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{kuvat/relaatiokaavio-pysty.png}
+   \caption{}\label{fig:krelaatiokaavio}
+\end{figure}
 
 \section{Järjestelmän yleisrakenne}
 
