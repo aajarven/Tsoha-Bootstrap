@@ -27,8 +27,8 @@ CREATE TABLE Kurssi (
   nimi varchar(150) NOT NULL,
   organisaatioID INTEGER NOT NULL,
   kotisivu varchar(500),
-  alkamispäivä DATE NOT NULL,
-  päättymispäivä DATE NOT NULL,
+  alkamispaiva DATE NOT NULL,
+  paattymispaiva DATE NOT NULL,
   FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID)
 );
 
