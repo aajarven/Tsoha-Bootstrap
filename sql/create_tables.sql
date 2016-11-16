@@ -73,7 +73,7 @@ CREATE TABLE AvoinVastaus (
   FOREIGN KEY (kysymysID) REFERENCES Kysymys (ID)
 );
 
-CREATE TABLE RyhmäJäsenyys (
+CREATE TABLE RyhmaJasenyys (
   kayttajaID INTEGER,
   ryhmaID INTEGER,
   organisaatioID INTEGER,
