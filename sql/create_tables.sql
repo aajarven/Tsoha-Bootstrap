@@ -91,6 +91,3 @@ CREATE TABLE KurssinOpettaja (
   FOREIGN KEY (henkiloID) REFERENCES Kayttaja (ID),
   FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
 );
-
-
-
