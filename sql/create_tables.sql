@@ -15,6 +15,11 @@ CREATE TABLE KayttajaRyhma (
   nimi varchar(150) NOT NULL
 );
 
+CREATE TABLE Tila (
+  ID SERIAL PRIMARY KEY,
+  nimi varchar(150)
+);
+
 CREATE TABLE Kayttaja (
   ID SERIAL PRIMARY KEY,
   sahkoposti varchar(256) NOT NULL,
@@ -29,7 +34,9 @@ CREATE TABLE Kurssi (
   kotisivu varchar(500),
   alkamispaiva DATE NOT NULL,
   paattymispaiva DATE NOT NULL,
-  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID)
+  status INTEGER NOT NULL,
+  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID),
+  FOREIGN KEY (status) REFERENCES Tila (ID)
 );
 
 CREATE TABLE Kysely (
