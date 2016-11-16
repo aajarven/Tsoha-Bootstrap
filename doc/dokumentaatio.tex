@@ -99,7 +99,7 @@ Järjestelmän tietosisältö on esitetty kuvassa \ref{fig:kasitekaavio}. Tarkem
 
 Kukin järjestelmän käyttäjä kuuluu vähintään yhteen käyttäjäryhmään, joita ovat esimerkiksi opiskelija ja opettaja. Käyttäjäryhmän lisäksi jokainen henkilö kuuluu johonkin organisaatioon. Näitä ovat esimerkiksi eri laitokset sekä tiedekunta. Hallintohenkilöiden ja opettajien osalta organisaatio määräytyy työsopimuksen perusteella ja opiskelijoilla pääaineen. Tietokanta on suunniteltu sellaiseksi, että saman käyttäjän kuuluminen useaan käyttäjäryhmään ja/tai organisaatioon (esimerkiksi opettaja tietojenkäsittelytieteen laitoksella ja opiskelija fysiikan laitoksella) on mahdollista, mutta tämän työn puitteissa ei todennäköisesti ole ajankäytöllisesti järkevää toteuttaa tukea myös ohjelmalogiikalle.
 
-Kysely edustaa tietyn kurssin palautekyselyä. Kutakin kurssia kohden on yksi korkeintaan yksi kysely ja kukin kysely voi koostua mielivaltaisestsa määrästä kysymyksiä. Kukin kysymys kuuluu joko yhteen kyselyyn (kurssikohtaiset kysymykset) tai yhteen organisaatioon (laitos- tai tiedekuntakohtaiset kysymykset).
+Kysely edustaa tietyn kurssin palautekyselyä. Kyselyn tilat on tallennettu erilliseen tauluun, jotta tilojen nimitykset on helppo pitää konsistentteina muutoksista huolimatta ja tilojen arvojoukko on helppo tarkastaa. Kutakin kurssia kohden on yksi korkeintaan yksi kysely ja kukin kysely voi koostua mielivaltaisestsa määrästä kysymyksiä. Kukin kysymys kuuluu joko yhteen kyselyyn (kurssikohtaiset kysymykset) tai yhteen organisaatioon (laitos- tai tiedekuntakohtaiset kysymykset).
 
 Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysymys kuuluu kuitenkin vain yhteen kurssiin tai organisaatioon. Kysymykset voivat olla vastaustyypiltään joko avoimia vai monivalintoja. Mikäli kyseessä on avoimen vastauksen kysymys, tallennetaan siihen saadut vastaukset AvoinVastaus-tauluun, jossa on yksi rivi kunkin opiskelijan kutakin vastausta kohden. Mikäli kyseessä on monivalinta, sisältää taulu Monivalintavastaus opiskelijan valitseman vastausvaihtoehdon järjestysluvun, jonka perusteella voidaan Monivalintavaihtoehto-taulusta hakea kyseistä vastausta vastaava selkokielinen teksti.
 
@@ -134,7 +134,7 @@ Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysy
   \hline
   Attribuutti & Arvojoukko & Kuvailu \\
   \hline
-  Nimi & Merkkijono, korkeintaan 150 merkkiäg & Organisaation nimi, esimerkiksi "Matemaattis-luonnontieteellinen tiedekunta" tai "Fysiikan laitos" \\
+  Nimi & Merkkijono, korkeintaan 150 merkkiä & Organisaation nimi, esimerkiksi "Matemaattis-luonnontieteellinen tiedekunta" tai "Fysiikan laitos" \\
   \hline
 \end{tabularx}
 \end{table}
@@ -161,6 +161,7 @@ Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysy
   Attribuutti & Arvojoukko & Kuvailu \\
   \hline
   Kurssi & Viite kurssiin & Kurssi, johon kysely kuuluu. \\
+  Tila & Viite tila-tauluun & Kurssin tämänhetkinen tila. \\
   \hline
 \end{tabularx}
 \end{table}
@@ -205,7 +206,7 @@ Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysy
 \end{table}
 
 \begin{table}[h]
-\caption{Monivalintavaihtoehto} \label{tietokohde_viimeinen}
+\caption{Monivalintavaihtoehto}
 \begin{tabularx}{\textwidth}{ |  l X X  |}
   \hline
   Attribuutti & Arvojoukko & Kuvailu \\
@@ -217,6 +218,16 @@ Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysy
 \end{tabularx}
 \end{table}
 
+\begin{table}[h]
+\caption{Tila} \label{tietokohde_viimeinen}
+\begin{tabularx}{\textwidth}{ |  l X X  |}
+  \hline
+  Attribuutti & Arvojoukko & Kuvailu \\
+  \hline
+  Nimi & Merkkijono, korkeintaan 150 merkkiä & Teksti, joka kuvaa kyselyn tilaa\\
+  \hline
+\end{tabularx}
+\end{table}
 
 \section{Relaatiotietokantakaavio}
 Käsitekaavion perusteella rakennettu relaatiokaavio on nähtävissä kuvassa \ref{fig:krelaatiokaavio}. Siihen on lisätty tarvittavat liitostaulut ja siinä ovat nähtävissä myös taulujen primary keyt (osalla erikseen lisätty ID, jota ei ole tarpeettomana sisällytetty käsitekaavion yhteydessä esitettyihin taulukoihin). Lisäksi kuvassa on esitetty taulujen primary ja foreign keyt.
