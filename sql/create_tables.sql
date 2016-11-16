@@ -17,7 +17,7 @@ CREATE TABLE KayttajaRyhma (
 
 CREATE TABLE Tila (
   ID SERIAL PRIMARY KEY,
-  nimi varchar(150)
+  nimi varchar(150) NOT NULL
 );
 
 CREATE TABLE Kayttaja (
@@ -34,15 +34,15 @@ CREATE TABLE Kurssi (
   kotisivu varchar(500),
   alkamispaiva DATE NOT NULL,
   paattymispaiva DATE NOT NULL,
-  status INTEGER NOT NULL,
-  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID),
-  FOREIGN KEY (status) REFERENCES Tila (ID)
+  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID)
 );
 
 CREATE TABLE Kysely (
   ID SERIAL PRIMARY KEY,
   kurssiID INTEGER NOT NULL,
-  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
+  status INTEGER NOT NULL,
+  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID),
+  FOREIGN KEY (status) REFERENCES Tila (ID)
 );
 
 CREATE TABLE Kysymys (
