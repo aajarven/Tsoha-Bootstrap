@@ -50,6 +50,7 @@ CREATE TABLE Kysymys (
   organisaatioID INTEGER,
   kyselyID INTEGER,
   tyyppi varchar(30) NOT NULL,
+  teksti varchar(500) NOT NULL,
   FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID),
   FOREIGN KEY (kyselyID) REFERENCES Kysely (ID)
 );
