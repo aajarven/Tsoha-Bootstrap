@@ -25,7 +25,7 @@ INSERT INTO RyhmaJasenyys (kayttajaID, ryhmaID, organisaatioID) VALUES (6, 0, 0)
 INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (0, 123456, 'Tähtitieteen perusteet', 1, NULL, '2016-10-31', '2016-12-21');
 INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (1, 456789, 'Fysiikan matemaattiset menetelmät Ia', 1, 'http://wiki.helsinki.fi/pages/viewpage.action?pageId=202023686', '2016-09-06', '2016-10-21');
 INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (2, 715517, 'Aineopintojen harjoitustyö: Tietokantasovellus (periodi II)', 0, 'https://www.cs.helsinki.fi/courses/582203/2016/s/a/2', '2016-10-31', '2016-12-12');
-INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (3, 258369, 'Höpöhöpötieteen perusteet', 1, NULL, '2016-10-31', '2016-12-21');
+INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (3, 258369, 'Höpöhöpötieteen perusteet', 1, 'https://www.google.fi', '2016-10-31', '2016-12-21');
 
 INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (0, 2);
 INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (3, 0);
