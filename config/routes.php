@@ -16,8 +16,8 @@ $routes->get('/opettajanakyma', function() {
     HelloWorldController::opettajanakyma();
 });
 
-$routes->get('/opiskelijanakyma', function() {
-    HelloWorldController::opiskelijanakyma();
+$routes->get('/opiskelijanakyma/:id', function($id) {
+    OpiskelijanakymaController::opiskelijanakyma($id);
 });
 
 $routes->get('/laitosnakyma', function() {

@@ -28,7 +28,7 @@
                 {% endif %}
                 <td>{{kurssi.alkamispaiva}}</td>
                 <td>{{kurssi.paattymispaiva}}</td>
-                <th><a class="btn btn-primary" href="/tsoha/kysely">Muokkaa</a></th>
+                <th><a class="btn btn-primary" href="{{base_path}}/kysely/{{kurssi.id}}">Muokkaa</a></th>
             </tr>
         {% endfor %}
 <!--      <tr>
