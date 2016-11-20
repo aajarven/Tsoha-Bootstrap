@@ -22,9 +22,10 @@ INSERT INTO RyhmaJasenyys (kayttajaID, ryhmaID, organisaatioID) VALUES (4, 0, 1)
 INSERT INTO RyhmaJasenyys (kayttajaID, ryhmaID, organisaatioID) VALUES (5, 0, 1);
 INSERT INTO RyhmaJasenyys (kayttajaID, ryhmaID, organisaatioID) VALUES (6, 0, 0);
 
-INSERT INTO Kurssi (ID, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (0, 'Tähtitieteen perusteet', 1, NULL, '2016-10-31', '2016-12-21');
-INSERT INTO Kurssi (ID, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (1, 'Fysiikan matemaattiset menetelmät Ia', 1, 'http://wiki.helsinki.fi/pages/viewpage.action?pageId=202023686', '2016-09-06', '2016-10-21');
-INSERT INTO Kurssi (ID, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (2, 'Aineopintojen harjoitustyö: Tietokantasovellus (periodi II)', 0, 'https://www.cs.helsinki.fi/courses/582203/2016/s/a/2', '2016-10-31', '2016-12-12');
+INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (0, 123456, 'Tähtitieteen perusteet', 1, NULL, '2016-10-31', '2016-12-21');
+INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (1, 456789, 'Fysiikan matemaattiset menetelmät Ia', 1, 'http://wiki.helsinki.fi/pages/viewpage.action?pageId=202023686', '2016-09-06', '2016-10-21');
+INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (2, 715517, 'Aineopintojen harjoitustyö: Tietokantasovellus (periodi II)', 0, 'https://www.cs.helsinki.fi/courses/582203/2016/s/a/2', '2016-10-31', '2016-12-12');
+INSERT INTO Kurssi (ID, kurssikoodi, nimi, organisaatioid, kotisivu, alkamispaiva, paattymispaiva) VALUES (3, 258369, 'Höpöhöpötieteen perusteet', 1, NULL, '2016-10-31', '2016-12-21');
 
 INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (0, 2);
 INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (3, 0);
@@ -34,6 +35,7 @@ INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (1, 0);
 INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (1, 1);
 INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (4, 0);
 INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (4, 2);
+INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (4, 3);
 INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (5, 2);
 INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (6, 0);
 
@@ -44,6 +46,8 @@ INSERT INTO Tila (ID, nimi) VALUES (2, 'päättynyt');
 INSERT INTO Kysely (ID, KurssiID, status) VALUES (0, 0, 1);
 INSERT INTO Kysely (ID, KurssiID, status) VALUES (1, 1, 2);
 INSERT INTO Kysely (ID, KurssiID, status) VALUES (2, 2, 0);
+INSERT INTO Kysely (ID, KurssiID, status) VALUES (3, 3, 1);
+
 
 INSERT INTO Monivalintavaihtoehto (kysymysID, jarjestysluku, teksti) VALUES (0, 0, '1');
 INSERT INTO Monivalintavaihtoehto (kysymysID, jarjestysluku, teksti) VALUES (0, 1, '2');

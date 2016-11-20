@@ -29,6 +29,7 @@ CREATE TABLE Kayttaja (
 
 CREATE TABLE Kurssi (
   ID SERIAL PRIMARY KEY,
+  kurssikoodi INTEGER NOT NULL,
   nimi varchar(150) NOT NULL,
   organisaatioID INTEGER NOT NULL,
   kotisivu varchar(500),
