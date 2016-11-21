@@ -1,20 +1,3 @@
-CREATE TABLE Monivalintavaihtoehto (
-  kysymysID INTEGER,
-  jarjestysluku INTEGER,
-  teksti varchar(50) NOT NULL,
-  PRIMARY KEY (kysymysID, jarjestysluku)
-);
-
-CREATE TABLE Organisaatio (
-  organisaatioID SERIAL PRIMARY KEY,
-  nimi varchar(150) NOT NULL
-);
-
-CREATE TABLE KayttajaRyhma (
-  ryhmaID SERIAL PRIMARY KEY,
-  nimi varchar(150) NOT NULL
-);
-
 CREATE TABLE Tila (
   ID SERIAL PRIMARY KEY,
   nimi varchar(150) NOT NULL
@@ -24,18 +7,17 @@ CREATE TABLE Kayttaja (
   ID SERIAL PRIMARY KEY,
   sahkoposti varchar(256) NOT NULL,
   salasanaHash varchar(256) NOT NULL,
-  suola varchar(16) NOT NULL
+  suola varchar(16) NOT NULL,
+  hallintohenkilo boolean NOT NULL
 );
 
 CREATE TABLE Kurssi (
   ID SERIAL PRIMARY KEY,
   kurssikoodi INTEGER NOT NULL,
   nimi varchar(150) NOT NULL,
-  organisaatioID INTEGER NOT NULL,
   kotisivu varchar(500),
   alkamispaiva DATE NOT NULL,
-  paattymispaiva DATE NOT NULL,
-  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID)
+  paattymispaiva DATE NOT NULL
 );
 
 CREATE TABLE Kysely (
@@ -48,41 +30,18 @@ CREATE TABLE Kysely (
 
 CREATE TABLE Kysymys (
   ID SERIAL PRIMARY KEY,
-  organisaatioID INTEGER,
   kyselyID INTEGER,
-  tyyppi varchar(30) NOT NULL,
   teksti varchar(500) NOT NULL,
-  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID),
   FOREIGN KEY (kyselyID) REFERENCES Kysely (ID)
 );
 
-CREATE TABLE Monivalintavastaus (
+CREATE TABLE Vastaus (
   opiskelijaID INTEGER,
   kysymysID INTEGER,
-  jarjestysluku INTEGER,
-  PRIMARY KEY (opiskelijaID, kysymysID, jarjestysluku),
-  FOREIGN KEY (kysymysID, jarjestysluku) REFERENCES Monivalintavaihtoehto (kysymysID, jarjestysluku),
+  vastaus INTEGER NOT NULL,
+  PRIMARY KEY (opiskelijaID, kysymysID),
   FOREIGN KEY (kysymysID) REFERENCES Kysymys (ID),
   FOREIGN KEY (opiskelijaID) REFERENCES Kayttaja (ID)
-);
-
-CREATE TABLE AvoinVastaus (
-  opiskelijaID INTEGER,
-  kysymysID INTEGER,
-  vastaus varchar(5000),
-  PRIMARY KEY (opiskelijaID, kysymysID),
-  FOREIGN KEY (opiskelijaID) REFERENCES Kayttaja (ID),
-  FOREIGN KEY (kysymysID) REFERENCES Kysymys (ID)
-);
-
-CREATE TABLE RyhmaJasenyys (
-  kayttajaID INTEGER,
-  ryhmaID INTEGER,
-  organisaatioID INTEGER,
-  PRIMARY KEY (kayttajaID, ryhmaID, organisaatioID),
-  FOREIGN KEY (kayttajaID) REFERENCES Kayttaja (ID),
-  FOREIGN KEY (ryhmaID) REFERENCES KayttajaRyhma (ryhmaID),
-  FOREIGN KEY (organisaatioID) REFERENCES Organisaatio (organisaatioID)
 );
 
 CREATE TABLE KurssinOsallistuja (
