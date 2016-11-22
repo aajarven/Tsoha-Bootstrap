@@ -15,7 +15,7 @@ class Kysely extends BaseModel{
                 . 'FROM Kurssi '
                 . 'LEFT OUTER JOIN ('
                 . 'SELECT Kysely.ID as kyselyID, Tila.ID as tilaID, Tila.nimi '
-                . 'FROM Kysely, Tila WHERE Kysely.ID = Tila.ID) AS kyselyntila '
+                . 'FROM Kysely, Tila WHERE Kysely.status = Tila.ID) AS kyselyntila '
                 . 'ON Kurssi.ID = kyselyntila.kyselyID '
                 . 'ORDER BY tilaID, kurssiID) AS kurssitiedot,'
                 . '(SELECT ID, COALESCE(vastausmaara, 0) as vastausmaara '

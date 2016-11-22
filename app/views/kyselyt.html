@@ -78,6 +78,38 @@
             <td><span class="label label-default">Ei muokattavissa</span></td>
             {% endif %}
             <td><span class="label label-default">Ei muokattavissa</span></td>
+            <td>{{opettajakyselyt[loop.index0].tila}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% if kyselyttomatKurssit[0] != NULL %}
+<h2>Kurssit ilman kyselyä</h2>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Kurssikoodi</th>
+            <th>Kurssin nimi</th>
+            <th>Kurssin alku</th>
+            <th>Kurssin loppu</th>
+            <th>Luo kysely</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {%for kurssi in kyselyttomatKurssit%}
+        <tr>
+            <td>{{kurssi.kurssikoodi}}</td>
+            {% if kurssi.kotisivu == NULL %}
+            <td>{{kurssi.nimi}}</td>
+            {% else %}
+            <td><a href="{{kurssi.kotisivu}}">{{kurssi.nimi}}</a></td>
+            {% endif %}
+            <td>{{kurssi.alkamispaiva}}</td>
+            <td>{{kurssi.paattymispaiva}}</td>
+            <td><a class="btn btn-success" href="#">Luo Kysely</a></td>
         </tr>
         {% endfor %}
     </tbody>

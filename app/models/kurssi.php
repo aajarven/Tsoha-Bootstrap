@@ -39,7 +39,7 @@ class Kurssi extends BaseModel{
         return $kurssit;
     }
     
-    public static function opettajanKurssit($opettajaID){
+    public static function opettajanKurssitKyselylla($opettajaID){
         $query = DB::connection()->prepare('SELECT Kurssi.ID, '
                 . 'kurssi.kurssikoodi, '
                 . 'kurssi.nimi, '
@@ -53,6 +53,35 @@ class Kurssi extends BaseModel{
                 . 'AND KurssinOpettaja.KurssiID = Kurssi.ID '
                 . 'AND KurssinOpettaja.henkiloID =:ID '
                 . 'ORDER BY jarjestys, ID');
+        $query->execute(array('ID' => $opettajaID));
+        $rivit = $query->fetchAll();
+        
+        $kurssit = array();
+        
+        foreach($rivit as $kurssi){
+            $kurssit[] = new Kurssi(array(
+                'id' => $kurssi['id'],
+                'kurssikoodi' => $kurssi['kurssikoodi'],
+                'nimi' => $kurssi['nimi'],
+                'kotisivu' => $kurssi['kotisivu'],
+                'alkamispaiva' => $kurssi['alkamispaiva'],
+                'paattymispaiva' => $kurssi['paattymispaiva']
+            ));
+        }
+        
+        return $kurssit;
+    }
+    
+    public static function opettajanKurssitIlmanKyselya($opettajaID){
+        $query = DB::connection()->prepare('SELECT * '
+                . 'FROM '
+                . '(SELECT Kurssi.ID, Kurssi.kurssikoodi, Kurssi.nimi, Kurssi.kotisivu, Kurssi.alkamispaiva, Kurssi.paattymispaiva '
+                . 'FROM Kysely FULL OUTER JOIN Kurssi '
+                . 'ON Kysely.kurssiID = Kurssi.ID '
+                . 'WHERE Kysely.ID IS NULL) AS kurssi, '
+                . 'KurssinOpettaja '
+                . 'WHERE KurssinOpettaja.kurssiID = kurssi.ID '
+                . 'AND KurssinOpettaja.HenkiloID = :ID;');
         $query->execute(array('ID' => $opettajaID));
         $rivit = $query->fetchAll();
         

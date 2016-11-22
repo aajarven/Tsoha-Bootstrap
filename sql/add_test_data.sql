@@ -16,6 +16,7 @@ INSERT INTO Kurssi (ID, kurssikoodi, nimi, kotisivu, alkamispaiva, paattymispaiv
 INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (0, 2);
 INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (3, 0);
 INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (3, 1);
+INSERT INTO KurssinOpettaja (henkiloID, kurssiID) VALUES (3, 4);
 
 INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (1, 0);
 INSERT INTO KurssinOsallistuja (henkiloID, kurssiID) VALUES (1, 1);
