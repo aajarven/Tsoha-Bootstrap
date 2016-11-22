@@ -2,16 +2,16 @@
 
 class Kysely extends BaseModel {
 
-    public $kurssiID, $tila, $vastaajamaara;
+    public $ID, $kurssiID, $tila, $vastaajamaara;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
 
     public static function opettajanKyselyt($opettajaID) {
-        $query = DB::connection()->prepare('SELECT kurssitiedot.kurssiID, nimi, tilaID, tilannimi, vastausmaara '
+        $query = DB::connection()->prepare('SELECT kyselyID, kurssitiedot.kurssiID, nimi, tilaID, tilannimi, vastausmaara '
                 . 'FROM ('
-                . 'SELECT Kurssi.ID as kurssiID, Kurssi.nimi, kyselyntila.tilaID, kyselyntila.nimi AS tilannimi '
+                . 'SELECT kyselyntila.kyselyID, Kurssi.ID as kurssiID, Kurssi.nimi, kyselyntila.tilaID, kyselyntila.nimi AS tilannimi '
                 . 'FROM Kurssi '
                 . 'LEFT OUTER JOIN ('
                 . 'SELECT Kysely.ID as kyselyID, Tila.ID as tilaID, Tila.nimi '
@@ -39,6 +39,7 @@ class Kysely extends BaseModel {
 
         foreach ($rivit as $kysely) {
             $kyselyt[] = new Kysely(array(
+                'ID' => $kysely['kyselyid'],
                 'kurssiID' => $kysely['kurssiid'],
                 'tila' => $kysely['tilannimi'],
                 'vastaajamaara' => $kysely['vastausmaara']
@@ -49,9 +50,28 @@ class Kysely extends BaseModel {
     }
 
     public function save() {
-        $query = DB::connection()->prepare('INSERT INTO Kysely (KurssiID) VALUES (:kurssiID)');
+        $query = DB::connection()->prepare('INSERT INTO Kysely (KurssiID) VALUES (:kurssiID) RETURNING ID, status');
         $query->execute(array('kurssiID' => $this->kurssiID));
         $rivi = $query->fetch();
+
+        $this->ID = $rivi['id'];
+        $this->status = $rivi['status'];
+    }
+
+    public static function haeKurssinKysely($kurssiID) {
+        $query = DB::connection()->prepare('SELECT Kysely.ID, Kysely.kurssiID, kysely.status '
+                . 'FROM Kysely, Kurssi '
+                . 'WHERE Kysely.kurssiID = Kurssi.ID '
+                . 'AND Kurssi.ID = :ID');
+        $query->execute(array('ID' => $kurssiID));
+
+        $rivi = $query->fetch();
+        $kysely = new Kysely(array(
+            'ID' => $rivi['id'],
+            'kurssiID' => $rivi['kurssiid'],
+            'tila' => $rivi['status']
+        ));
+        return $kysely;
     }
 
 }

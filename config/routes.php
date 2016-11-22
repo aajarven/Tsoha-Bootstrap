@@ -1,5 +1,13 @@
 <?php
 
+$routes->post('/kysymys/lisaa/:ID', function($kurssiID){
+    KyselynakymaController::lisaaKysymys($kurssiID);
+});
+
+$routes->get('/kysymys/lisaa/:ID', function($kurssiID){
+    KyselynakymaController::naytaLisayslomake($kurssiID);
+});
+
 $routes->get('/kyselyt/luo/:id', function($kurssiID){
     KyselynakymaController::luo($kurssiID);
 });
