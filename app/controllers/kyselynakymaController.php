@@ -25,7 +25,7 @@ class KyselynakymaController extends BaseController{
     public static function muokkaaKyselya($kurssiID){
         $kysymykset = Kysymys::kyselynKysymykset($kurssiID);
         
-        View::make('kyselyt.html', array('kysymykset' => $kysymykset));
+        View::make('muokkaaKyselya.html', array('kysymykset' => $kysymykset));
     }
 }
 
