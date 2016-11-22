@@ -51,3 +51,17 @@ INSERT INTO Kysymys (ID, kyselyID, teksti) VALUES (10, 3, 'Kurssi oli riittävä
 INSERT INTO Kysymys (ID, kyselyID, teksti) VALUES (11, 3, 'Sain riittävästi tukea laskareissa (1=täysin eri mieltä, 3=ei samaa eikä eri mieltä, 5=täysin samaa mieltä)');
 INSERT INTO Kysymys (ID, kyselyID, teksti) VALUES (12, 3, 'Anna kokonaisarvosana kurssille');
 INSERT INTO Kysymys (ID, kyselyID, teksti) VALUES (13, 3, 'Anna kokonaisarvosana laskareille');
+
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (1, 0, 5);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (1, 1, 3);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (1, 2, 4);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (1, 3, 3);
+
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (1, 4, 4);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (1, 5, 3);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (1, 6, 4);
+
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (4, 0, 5);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (4, 1, 4);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (4, 2, 3);
+INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (4, 3, 3);
