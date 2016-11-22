@@ -1,14 +1,14 @@
 <?php
 
-class Kysely extends BaseModel{
-    
+class Kysely extends BaseModel {
+
     public $kurssiID, $tila, $vastaajamaara;
-    
-    public function __construct($attributes){
+
+    public function __construct($attributes) {
         parent::__construct($attributes);
     }
-    
-    public static function opettajanKyselyt($opettajaID){
+
+    public static function opettajanKyselyt($opettajaID) {
         $query = DB::connection()->prepare('SELECT kurssitiedot.kurssiID, nimi, tilaID, tilannimi, vastausmaara '
                 . 'FROM ('
                 . 'SELECT Kurssi.ID as kurssiID, Kurssi.nimi, kyselyntila.tilaID, kyselyntila.nimi AS tilannimi '
@@ -34,20 +34,24 @@ class Kysely extends BaseModel{
                 . 'ORDER BY tilaID, kurssiID');
         $query->execute(array('ID' => $opettajaID));
         $rivit = $query->fetchAll();
-        
+
         $kyselyt = array();
-        
-        foreach($rivit as $kysely){
+
+        foreach ($rivit as $kysely) {
             $kyselyt[] = new Kysely(array(
                 'kurssiID' => $kysely['kurssiid'],
                 'tila' => $kysely['tilannimi'],
                 'vastaajamaara' => $kysely['vastausmaara']
             ));
         }
-        
+
         return $kyselyt;
     }
-    
-    
-}
 
+    public function save() {
+        $query = DB::connection()->prepare('INSERT INTO Kysely (KurssiID) VALUES (:kurssiID)');
+        $query->execute(array('kurssiID' => $this->kurssiID));
+        $rivi = $query->fetch();
+    }
+
+}

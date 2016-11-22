@@ -1,7 +1,11 @@
 <?php
 
 $routes->get('/kyselyt/luo/:id', function($kurssiID){
-    KyselynakymaController::luonti($kurssiID);
+    KyselynakymaController::luo($kurssiID);
+});
+
+$routes->get('/kyselyt/muokkaa/:id', function($kurssiID){
+    KyselynakymaController::muokkaaKyselya($kurssiID);
 });
 
 $routes->get('/kyselyt/:id', function($id) {

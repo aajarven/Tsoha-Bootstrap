@@ -73,7 +73,7 @@
             {% endif %}
             <td>{{opettajakyselyt[loop.index0].vastaajamaara}}</td>
             {% if opettajakyselyt[loop.index0].tila == 'luonnos' %}
-            <td><a class="btn btn-success" href="/tsoha/muokkaus-kysely">Muokkaa</a></td>
+            <td><a class="btn btn-success" href="/tsoha/kyselyt/muokkaa/{{opettajakyselyt[loop.index0].kurssiID}}">Muokkaa</a></td>
             {% else %}
             <td><span class="label label-default">Ei muokattavissa</span></td>
             {% endif %}
