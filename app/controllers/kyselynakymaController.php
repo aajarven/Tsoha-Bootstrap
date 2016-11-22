@@ -46,6 +46,7 @@ class KyselynakymaController extends BaseController {
         ));
         
         $kysymys->save();
+        Redirect::to('/kyselyt/muokkaa/' . $kysely->kurssiID);
     }
 
 }
