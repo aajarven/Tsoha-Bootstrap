@@ -8,5 +8,10 @@ class KyselynakymaController extends BaseController{
         $kyselyttomatKurssit = Kurssi::opettajanKurssitIlmanKyselya($id);
         View::make('kyselyt.html', array('opiskelijakurssit' => $opiskelijakurssit, 'opettajakurssit' => $opettajakurssit, 'opettajakyselyt' => $opettajakyselyt, 'kyselyttomatKurssit' => $kyselyttomatKurssit));
     }
+    
+    public static function luonti($kurssiID){
+        $kurssi = Kurssi::haeKurssi($kurssiID);
+        View::make('luo.html', array('kurssi' => $kurssi));
+    }
 }
 

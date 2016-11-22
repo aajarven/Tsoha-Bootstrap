@@ -1,13 +1,14 @@
 <?php
 
-class Kurssi extends BaseModel{
+class Kurssi extends BaseModel {
+
     public $ID, $kurssikoodi, $nimi, $kotisivu, $alkamispaiva, $paattymispaiva;
-    
-    public function __construct($attributes){
+
+    public function __construct($attributes) {
         parent::__construct($attributes);
     }
-    
-    public static function opiskelijanKurssit($opiskelijaID){
+
+    public static function opiskelijanKurssit($opiskelijaID) {
         $query = DB::connection()->prepare('SELECT Kurssi.ID, '
                 . 'kurssi.kurssikoodi, '
                 . 'kurssi.nimi, '
@@ -22,10 +23,10 @@ class Kurssi extends BaseModel{
                 . 'AND Tila.nimi ~ \'käynnissä\'');
         $query->execute(array('ID' => $opiskelijaID));
         $rivit = $query->fetchAll();
-        
+
         $kurssit = array();
-        
-        foreach($rivit as $kurssi){
+
+        foreach ($rivit as $kurssi) {
             $kurssit[] = new Kurssi(array(
                 'id' => $kurssi['id'],
                 'kurssikoodi' => $kurssi['kurssikoodi'],
@@ -35,11 +36,11 @@ class Kurssi extends BaseModel{
                 'paattymispaiva' => $kurssi['paattymispaiva']
             ));
         }
-        
+
         return $kurssit;
     }
-    
-    public static function opettajanKurssitKyselylla($opettajaID){
+
+    public static function opettajanKurssitKyselylla($opettajaID) {
         $query = DB::connection()->prepare('SELECT Kurssi.ID, '
                 . 'kurssi.kurssikoodi, '
                 . 'kurssi.nimi, '
@@ -55,10 +56,10 @@ class Kurssi extends BaseModel{
                 . 'ORDER BY jarjestys, ID');
         $query->execute(array('ID' => $opettajaID));
         $rivit = $query->fetchAll();
-        
+
         $kurssit = array();
-        
-        foreach($rivit as $kurssi){
+
+        foreach ($rivit as $kurssi) {
             $kurssit[] = new Kurssi(array(
                 'id' => $kurssi['id'],
                 'kurssikoodi' => $kurssi['kurssikoodi'],
@@ -68,11 +69,11 @@ class Kurssi extends BaseModel{
                 'paattymispaiva' => $kurssi['paattymispaiva']
             ));
         }
-        
+
         return $kurssit;
     }
-    
-    public static function opettajanKurssitIlmanKyselya($opettajaID){
+
+    public static function opettajanKurssitIlmanKyselya($opettajaID) {
         $query = DB::connection()->prepare('SELECT * '
                 . 'FROM '
                 . '(SELECT Kurssi.ID, Kurssi.kurssikoodi, Kurssi.nimi, Kurssi.kotisivu, Kurssi.alkamispaiva, Kurssi.paattymispaiva '
@@ -84,12 +85,12 @@ class Kurssi extends BaseModel{
                 . 'AND KurssinOpettaja.HenkiloID = :ID;');
         $query->execute(array('ID' => $opettajaID));
         $rivit = $query->fetchAll();
-        
+
         $kurssit = array();
-        
-        foreach($rivit as $kurssi){
+
+        foreach ($rivit as $kurssi) {
             $kurssit[] = new Kurssi(array(
-                'id' => $kurssi['id'],
+                'ID' => $kurssi['id'],
                 'kurssikoodi' => $kurssi['kurssikoodi'],
                 'nimi' => $kurssi['nimi'],
                 'kotisivu' => $kurssi['kotisivu'],
@@ -97,7 +98,32 @@ class Kurssi extends BaseModel{
                 'paattymispaiva' => $kurssi['paattymispaiva']
             ));
         }
-        
+
         return $kurssit;
     }
+
+    public static function haeKurssi($kurssiID) {
+        $query = DB::connection()->prepare('SELECT Kurssi.ID, '
+                . 'kurssi.kurssikoodi, '
+                . 'kurssi.nimi, '
+                . 'kurssi.kotisivu, '
+                . 'kurssi.alkamispaiva, '
+                . 'kurssi.paattymispaiva '
+                . 'FROM Kurssi '
+                . 'WHERE Kurssi.ID = :ID');
+        $query->execute(array('ID' => $kurssiID));
+        $rivi = $query->fetch();
+
+        $kurssi = new Kurssi(array(
+            'id' => $rivi['id'],
+            'kurssikoodi' => $rivi['kurssikoodi'],
+            'nimi' => $rivi['nimi'],
+            'kotisivu' => $rivi['kotisivu'],
+            'alkamispaiva' => $rivi['alkamispaiva'],
+            'paattymispaiva' => $rivi['paattymispaiva']
+        ));
+
+        return $kurssi;
+    }
+
 }

@@ -1,5 +1,13 @@
 <?php
 
+$routes->get('/kyselyt/luo/:id', function($kurssiID){
+    KyselynakymaController::luonti($kurssiID);
+});
+
+$routes->get('/kyselyt/:id', function($id) {
+    KyselynakymaController::kyselyt($id);
+});
+
 $routes->get('/', function() {
     HelloWorldController::index();
 });
@@ -14,10 +22,6 @@ $routes->get('/etusivu', function() {
 
 $routes->get('/opettajanakyma', function() {
     HelloWorldController::opettajanakyma();
-});
-
-$routes->get('/kyselyt/:id', function($id) {
-    KyselynakymaController::kyselyt($id);
 });
 
 $routes->get('/laitosnakyma', function() {

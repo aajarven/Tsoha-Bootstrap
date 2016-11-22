@@ -109,7 +109,7 @@
             {% endif %}
             <td>{{kurssi.alkamispaiva}}</td>
             <td>{{kurssi.paattymispaiva}}</td>
-            <td><a class="btn btn-success" href="#">Luo Kysely</a></td>
+            <td><a class="btn btn-success" href="{{base_path}}/kyselyt/luo/{{kurssi.ID}}">Luo Kysely</a></td>
         </tr>
         {% endfor %}
     </tbody>
