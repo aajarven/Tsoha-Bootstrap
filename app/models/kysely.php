@@ -73,5 +73,20 @@ class Kysely extends BaseModel {
         ));
         return $kysely;
     }
+    
+    public static function haeKysely($kyselyID) {
+        $query = DB::connection()->prepare('SELECT Kysely.ID, Kysely.kurssiID, kysely.status '
+                . 'FROM Kysely '
+                . 'WHERE Kysely.ID = :ID');
+        $query->execute(array('ID' => $kyselyID));
+
+        $rivi = $query->fetch();
+        $kysely = new Kysely(array(
+            'ID' => $rivi['id'],
+            'kurssiID' => $rivi['kurssiid'],
+            'tila' => $rivi['status']
+        ));
+        return $kysely;
+    }
 
 }

@@ -59,5 +59,32 @@ class KyselynakymaController extends BaseController {
             View::make('lisaaKysymys.html', array('kurssi'=>$kurssi, 'virheet' => $virheet, 'attributes' => $attributes));
         }
     }
+    
+    public static function naytaMuokkauslomake($kysymysID){
+        $kysymys = Kysymys::haeKysymys($kysymysID);
+        View::make('muokkaaKysymysta.html', array('attributes'=>$kysymys));
+    }
+    
+    public static function muokkaaKysymys($kysymysID){
+        $alkuperainenkysymys = Kysymys::haeKysymys($kysymysID);
+        $kysely = Kysely::haeKysely($alkuperainenkysymys->kyselyID);
+        $kurssi = Kurssi::haeKurssi($kysely->kurssiID);
+        $params = $_POST;
+        $attributes = array(
+            'ID' => $kysymysID,
+            'teksti' => $params['kysymys']
+        );
+        
+        $kysymys = new Kysymys($attributes);
+        $virheet = $kysymys->errors();
+        
+        if (count($virheet) == 0) {
+            $kysymys->update();
+            Redirect::to('/kyselyt/muokkaa/' . $kurssi->ID);
+        } else {
+            $kurssi = Kurssi::haeKurssi($kurssiID);
+            View::make('muokkaaKysymysta.html', array('virheet' => $virheet, 'attributes' => $attributes));
+        }
+    }
 
 }

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Muokkaa kysymystä {{attributes.teksti}}</h1>
+
+
+{% if virheet %}
+<div class="alert alert-danger">
+    <ul>
+        {% for virhe in virheet %}
+        <li>{{virhe}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/kysymys/muokkaa/{{attributes.ID}}">
+    <div class="form-group">
+        <label>Kysymys</label>
+        <input name="kysymys" class="form-control" value ="{{attributes.teksti}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <button type="laheta" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

@@ -20,10 +20,10 @@ class Kysymys extends BaseModel {
         $rivit = $query->fetchAll();
 
         $kysymykset = array();
-        
+
         foreach ($rivit as $kysymys) {
             $kysymykset[] = new Kysymys(array(
-                'id' => $kysymys['id'],
+                'ID' => $kysymys['id'],
                 'kyselyID' => $kysymys['kyselyid'],
                 'teksti' => $kysymys['teksti']
             ));
@@ -31,17 +31,43 @@ class Kysymys extends BaseModel {
 
         return $kysymykset;
     }
-    
-    public function save(){
+
+    public function save() {
         $query = DB::connection()->prepare('INSERT INTO Kysymys (kyselyID, teksti) VALUES (:kyselyID, :teksti) RETURNING ID');
         $query->execute(array('kyselyID' => $this->kyselyID, 'teksti' => $this->teksti));
-        
+
         $rivi = $query->fetch();
         $this->ID = $rivi['id'];
     }
     
-    public function validoiTeksti(){
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Kysymys '
+                . 'SET teksti = :teksti '
+                . 'WHERE ID = :kysymysID');
+        $query->execute(array('kysymysID' => $this->ID, 'teksti' => $this->teksti));
+    }
+
+    public function validoiTeksti() {
         return $this->{'validoiEiNull'}($this->teksti, "Kysymys ei voi olla tyhjä");
+    }
+
+    public function haeKysymys($kysymysID) {
+        $query = DB::connection()->prepare('SELECT Kysymys.ID,'
+                . 'Kysymys.kyselyID, '
+                . 'Kysymys.teksti '
+                . 'FROM Kysymys '
+                . 'WHERE Kysymys.ID = :ID');
+        $query->execute(array('ID' => $kysymysID));
+        $rivi = $query->fetch();
+
+
+        $kysymys = new Kysymys(array(
+            'ID' => $rivi['id'],
+            'kyselyID' => $rivi['kyselyid'],
+            'teksti' => $rivi['teksti']
+        ));
+
+        return $kysymys;
     }
 
 }

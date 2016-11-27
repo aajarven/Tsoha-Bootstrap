@@ -16,6 +16,14 @@ $routes->get('/kyselyt/muokkaa/:id', function($kurssiID){
     KyselynakymaController::muokkaaKyselya($kurssiID);
 });
 
+$routes->get('/kysymys/muokkaa/:id', function($kysymysID){
+    KyselynakymaController::naytaMuokkauslomake($kysymysID);
+});
+
+$routes->post('/kysymys/muokkaa/:id', function($kysymysID){
+    KyselynakymaController::muokkaaKysymys($kysymysID);
+});
+
 $routes->get('/kyselyt/:id', function($id) {
     KyselynakymaController::kyselyt($id);
 });
