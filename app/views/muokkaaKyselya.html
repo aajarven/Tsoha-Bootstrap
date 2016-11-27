@@ -2,6 +2,12 @@
 {% block content %}
 <h1>{{kurssi.nimi}}</h1>
 
+{% if message%}
+<div class="alert alert-success">
+    <p>{{message}}</p>
+</div>
+{% endif %}
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
