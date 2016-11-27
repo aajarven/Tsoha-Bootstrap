@@ -46,6 +46,12 @@ class Kysymys extends BaseModel {
                 . 'WHERE ID = :kysymysID');
         $query->execute(array('kysymysID' => $this->ID, 'teksti' => $this->teksti));
     }
+    
+    public function poista(){
+        $query = DB::connection()->prepare('DELETE FROM Kysymys '
+                . 'WHERE ID = :kysymysID');
+        $query->execute(array('kysymysID' => $this->ID));
+    }
 
     public function validoiTeksti() {
         return $this->{'validoiEiNull'}($this->teksti, "Kysymys ei voi olla tyhjä");

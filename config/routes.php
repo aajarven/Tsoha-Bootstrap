@@ -24,6 +24,10 @@ $routes->post('/kysymys/muokkaa/:id', function($kysymysID){
     KyselynakymaController::muokkaaKysymys($kysymysID);
 });
 
+$routes->get('/kysymys/poista/:id', function($kysymysID){
+    KyselynakymaController::poistaKysymys($kysymysID);
+});
+
 $routes->get('/kyselyt/:id', function($id) {
     KyselynakymaController::kyselyt($id);
 });

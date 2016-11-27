@@ -80,11 +80,21 @@ class KyselynakymaController extends BaseController {
         
         if (count($virheet) == 0) {
             $kysymys->update();
-            Redirect::to('/kyselyt/muokkaa/' . $kurssi->ID);
+            Redirect::to('/kyselyt/muokkaa/' . $kurssi->ID, array('message' => 'Kysymys muokattu'));
         } else {
             $kurssi = Kurssi::haeKurssi($kurssiID);
             View::make('muokkaaKysymysta.html', array('virheet' => $virheet, 'attributes' => $attributes));
         }
+    }
+    
+    public static function poistaKysymys($kysymysID){
+        $alkuperainenkysymys = Kysymys::haeKysymys($kysymysID);
+        $kysely = Kysely::haeKysely($alkuperainenkysymys->kyselyID);
+        $kurssi = Kurssi::haeKurssi($kysely->kurssiID);
+        
+        $kysymys = new Kysymys(array('ID'=>$kysymysID));
+        $kysymys->poista();
+        Redirect::to('/kyselyt/muokkaa/' . $kurssi->ID, array('message' => 'Kysyms poistettu'));
     }
 
 }
