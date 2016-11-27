@@ -1,17 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Kurssikysely</h1>
+<h1>Kirjaudu kurssikyselyjärjestelmään</h1>
+
+{% if virhe %}
+<div class="alert alert-danger">
+    <p>{{virhe}}</p>
+</div>
+{% endif %}
+
 <form method="post" action="{{base_path}}/kirjaudu">
     <div class="form-group">
         <label>Sähköpostiosoite</label>
         <input class="form-control" name="sahkoposti" value="{{sahkoposti}}" type="text">
     </div>
-    
+
     <div class="form-group">
-      <label>Salasana</label>
-      <input class="form-control" name="salasana" type="password">
+        <label>Salasana</label>
+        <input class="form-control" name="salasana" type="password">
     </div>
-    
+
     <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
 </form>
 {% endblock %}

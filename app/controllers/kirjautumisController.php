@@ -11,7 +11,7 @@ class KirjautumisController extends BaseController {
     $kayttaja = Kayttaja::kirjaudu($params['sahkoposti'], $params['salasana']);
 
     if(!$kayttaja){
-      View::make('kirjautumissivu.html', array('error' => 'Virheellinen sähköposti tai salasana', 'sahkoposti' => $params['sahkoposti']));
+      View::make('kirjautumissivu.html', array('virhe' => 'Virheellinen sähköposti tai salasana', 'sahkoposti' => $params['sahkoposti']));
     }else{
       $_SESSION['kayttaja'] = $kayttaja->ID;
 
