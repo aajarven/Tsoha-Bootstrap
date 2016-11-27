@@ -55,7 +55,8 @@ class KyselynakymaController extends BaseController {
             $kysymys->save();
             Redirect::to('/kyselyt/muokkaa/' . $kysely->kurssiID);
         } else {
-            Redirect::to('/kysymys/lisaa/'.$kysely->kurssiID, array('virheet' => $virheet, 'attributes' => $attributes));
+            $kurssi = Kurssi::haeKurssi($kurssiID);
+            View::make('lisaaKysymys.html', array('kurssi'=>$kurssi, 'virheet' => $virheet, 'attributes' => $attributes));
         }
     }
 
