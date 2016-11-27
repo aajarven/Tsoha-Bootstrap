@@ -1,15 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-  <h1>Lisää kysymys kurssille {{kurssi.nimi}}</h1>
+<h1>Lisää kysymys kurssille {{kurssi.nimi}}</h1>
 
-  <form method="post" action="{{base_path}}/kysymys/lisaa/{{kurssi.ID}}">
+
+{% if virheet %}
+<div class="alert alert-danger">
+    <ul>
+        {% for virhe in virheet %}
+        <li>{{virhe}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/kysymys/lisaa/{{kurssi.ID}}">
     <div class="form-group">
-      <label>Kysymys</label>
-      <input name="kysymys" class="form-control" type="text">
+        <label>Kysymys</label>
+        <input name="kysymys" class="form-control" value ="{{attributes.teksti}}" type="text">
     </div>
 
     <div class="form-group">
-      <button type="laheta" class="btn btn-primary">Lisää</button>
+        <button type="laheta" class="btn btn-primary">Lisää</button>
     </div>
-  </form>
+</form>
 {% endblock %}

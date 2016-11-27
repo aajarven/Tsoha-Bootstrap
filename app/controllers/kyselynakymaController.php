@@ -39,14 +39,24 @@ class KyselynakymaController extends BaseController {
     public static function lisaaKysymys($kurssiID) {
         $params = $_POST;
         $kysely = Kysely::haeKurssinKysely($kurssiID);
+        $attributes = array(
+            'teksti' => $params['kysymys']
+        );
+        
         $kysymys = new Kysymys(array(
-            'teksti' => $params['kysymys'],
+            'teksti' => $attributes['teksti'],
             'kurssiID' => $kurssiID,
             'kyselyID' => $kysely->ID
         ));
-        
-        $kysymys->save();
-        Redirect::to('/kyselyt/muokkaa/' . $kysely->kurssiID);
+
+        $virheet = $kysymys->errors();
+
+        if (count($virheet) == 0) {
+            $kysymys->save();
+            Redirect::to('/kyselyt/muokkaa/' . $kysely->kurssiID);
+        } else {
+            Redirect::to('/kysymys/lisaa/'.$kysely->kurssiID, array('virheet' => $virheet, 'attributes' => $attributes));
+        }
     }
 
 }

@@ -6,6 +6,7 @@ class Kysymys extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validoiTeksti');
     }
 
     public static function kyselynKysymykset($kurssiID) {
@@ -37,6 +38,10 @@ class Kysymys extends BaseModel {
         
         $rivi = $query->fetch();
         $this->ID = $rivi['id'];
+    }
+    
+    public function validoiTeksti(){
+        return $this->{'validoiEiNull'}($this->teksti, "Kysymys ei voi olla tyhjä");
     }
 
 }
