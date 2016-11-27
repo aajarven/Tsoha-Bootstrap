@@ -5,7 +5,7 @@ CREATE TABLE Tila (
 
 CREATE TABLE Kayttaja (
   ID SERIAL PRIMARY KEY,
-  sahkoposti varchar(256) NOT NULL,
+  sahkoposti varchar(256) UNIQUE NOT NULL,
   salasanaHash varchar(256) NOT NULL,
   suola varchar(16) NOT NULL,
   hallintohenkilo boolean NOT NULL

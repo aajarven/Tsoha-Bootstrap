@@ -48,7 +48,8 @@ INSERT INTO Kysymys (kyselyID, teksti) VALUES (3, 'Harjoitustöiden vaikeustaso 
 INSERT INTO Kysymys (kyselyID, teksti) VALUES (3, 'Anna kokonaisarvosana kurssille');
 INSERT INTO Kysymys (kyselyID, teksti) VALUES (3, 'Anna kokonaisarvosana laskareille');
 
-INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Anna kokonaisarvosana havaintoexculle'); 3, 'Kurssi oli riittävän huuruinen (1=täysin eri mieltä, 3=ei samaa eikä eri mieltä, 5=täysin samaa mieltä)');
+INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Anna kokonaisarvosana havaintoexculle'); 
+INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Kurssi oli riittävän huuruinen (1=täysin eri mieltä, 3=ei samaa eikä eri mieltä, 5=täysin samaa mieltä)');
 INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Sain riittävästi tukea laskareissa (1=täysin eri mieltä, 3=ei samaa eikä eri mieltä, 5=täysin samaa mieltä)');
 INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Anna kokonaisarvosana kurssille');
 INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Anna kokonaisarvosana laskareille');
