@@ -1,30 +1,38 @@
 <?php
 
-$routes->post('/kysymys/lisaa/:ID', function($kurssiID){
+$routes->get('/kirjaudu', function() {
+    KirjautumisController::naytaKirjautumissivu();
+});
+
+$routes->post('/kirjaudu', function() {
+    KirjautumisController::kirjaudu();
+});
+
+$routes->post('/kysymys/lisaa/:ID', function($kurssiID) {
     KyselynakymaController::lisaaKysymys($kurssiID);
 });
 
-$routes->get('/kysymys/lisaa/:ID', function($kurssiID){
+$routes->get('/kysymys/lisaa/:ID', function($kurssiID) {
     KyselynakymaController::naytaLisayslomake($kurssiID);
 });
 
-$routes->get('/kyselyt/luo/:id', function($kurssiID){
+$routes->get('/kyselyt/luo/:id', function($kurssiID) {
     KyselynakymaController::luo($kurssiID);
 });
 
-$routes->get('/kyselyt/muokkaa/:id', function($kurssiID){
+$routes->get('/kyselyt/muokkaa/:id', function($kurssiID) {
     KyselynakymaController::muokkaaKyselya($kurssiID);
 });
 
-$routes->get('/kysymys/muokkaa/:id', function($kysymysID){
+$routes->get('/kysymys/muokkaa/:id', function($kysymysID) {
     KyselynakymaController::naytaMuokkauslomake($kysymysID);
 });
 
-$routes->post('/kysymys/muokkaa/:id', function($kysymysID){
+$routes->post('/kysymys/muokkaa/:id', function($kysymysID) {
     KyselynakymaController::muokkaaKysymys($kysymysID);
 });
 
-$routes->get('/kysymys/poista/:id', function($kysymysID){
+$routes->get('/kysymys/poista/:id', function($kysymysID) {
     KyselynakymaController::poistaKysymys($kysymysID);
 });
 
