@@ -7,9 +7,9 @@ class BaseController {
         if (isset($_SESSION['kayttajaID'])) {
             $kayttajaID = $_SESSION['kayttajaID'];
             // Pyydetään User-mallilta käyttäjä session mukaisella id:llä
-            $kayttajaID = User::find($user_id);
+            $kayttaja = Kayttaja::haeKayttaja($kayttajaID);
 
-            return $kayttajaID;
+            return $kayttaja;
         }
 
         // Käyttäjä ei ole kirjautunut sisään

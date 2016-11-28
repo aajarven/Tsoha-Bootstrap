@@ -29,4 +29,22 @@ class Kayttaja extends BaseModel {
         }
         
     }
+    
+    public function haeKayttaja($kayttajaID){
+        $query = DB::connection()->prepare('SELECT * FROM Kayttaja '
+                . 'WHERE ID = :ID');
+        $query->execute(array('ID' => $kayttajaID));
+        
+        $rivi = $query->fetch();
+        
+        $kayttaja = new Kayttaja(array(
+            'ID' => $rivi['id'],
+            'sahkoposti' => $rivi['sahkoposti'],
+            'salasanaHash' => $rivi['salasanahash'],
+            'suola' => $rivi['suola'],
+            'hallintohenkilo' => $rivi['hallintohenkilo']
+        ));
+        
+        return $kayttaja;
+    }
 }
