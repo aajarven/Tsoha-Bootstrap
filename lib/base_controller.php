@@ -18,7 +18,7 @@ class BaseController {
 
     public static function check_logged_in() {
         if (BaseController::get_user_logged_in() == null){
-            Redirect::to('{{base_url}}/kirjaudu');
+            Redirect::to('/kirjaudu');
         }
     }
 

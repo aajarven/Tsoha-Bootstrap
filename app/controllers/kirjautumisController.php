@@ -15,7 +15,7 @@ class KirjautumisController extends BaseController {
     }else{
       $_SESSION['kayttajaID'] = $kayttaja->ID;
 
-      Redirect::to('/kyselyt/'.$kayttaja->ID);
+      Redirect::to('/kyselyt/');
     }
   }
 }
