@@ -13,7 +13,7 @@ class KirjautumisController extends BaseController {
     if(!$kayttaja){
       View::make('kirjautumissivu.html', array('virhe' => 'Virheellinen sähköposti tai salasana', 'sahkoposti' => $params['sahkoposti']));
     }else{
-      $_SESSION['kayttaja'] = $kayttaja->ID;
+      $_SESSION['kayttajaID'] = $kayttaja->ID;
 
       Redirect::to('/kyselyt/'.$kayttaja->ID);
     }
