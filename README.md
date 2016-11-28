@@ -12,3 +12,6 @@ Laitos ja tiedekunta voivat hakea yhteenvedon kurssin tai kurssien kysymysten tu
 
 ## Työn toteutus
 Työn toteutuksessa käytetyt työkalut ovat php ja PostgreSQL.
+
+## Järjestelmän käyttö
+Järjestelmään voi kirjautua sähköpostiosoitteella "opettaja.tahtinen@helsinki.fi" ja salasanalla "salasana".
