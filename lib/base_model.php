@@ -35,5 +35,14 @@ class BaseModel {
 
         return $virheet;
     }
+    
+    public function validoiMaksimipituus($teksti, $maksimipituus, $virheilmoitus) {
+        $virheet = array();
+        if (strlen($teksti) > $maksimipituus) {
+            $virheet[] = $virheilmoitus;
+        }
+
+        return $virheet;
+    }
 
 }

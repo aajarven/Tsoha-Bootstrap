@@ -54,7 +54,9 @@ class Kysymys extends BaseModel {
     }
 
     public function validoiTeksti() {
-        return $this->{'validoiEiNull'}($this->teksti, "Kysymys ei voi olla tyhjä");
+        $virheet = $this->{'validoiEiNull'}($this->teksti, "Kysymys ei voi olla tyhjä");
+        $virheet = array_merge($virheet, $this->{'validoiMaksimipituus'}($this->teksti, 500, "Kysymyksen maksimipituus on 500 merkkiä"));
+        return $virheet;
     }
 
     public function haeKysymys($kysymysID) {
