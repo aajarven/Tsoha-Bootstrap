@@ -1,5 +1,13 @@
 <?php
 
+function check_logged_in(){
+  BaseController::check_logged_in();
+}
+
+$routes->get('/', 'check_logged_in', function() {
+    KyselynakymaController::kyselyt();
+});
+
 $routes->get('/kirjaudu', function() {
     KirjautumisController::naytaKirjautumissivu();
 });
@@ -8,36 +16,40 @@ $routes->post('/kirjaudu', function() {
     KirjautumisController::kirjaudu();
 });
 
-$routes->post('/kysymys/lisaa/:ID', function($kurssiID) {
+$routes->post('/kysymys/lisaa/:ID', 'check_logged_in', function($kurssiID) {
     KyselynakymaController::lisaaKysymys($kurssiID);
 });
 
-$routes->get('/kysymys/lisaa/:ID', function($kurssiID) {
+$routes->get('/kysymys/lisaa/:ID', 'check_logged_in', function($kurssiID) {
     KyselynakymaController::naytaLisayslomake($kurssiID);
 });
 
-$routes->get('/kyselyt/luo/:id', function($kurssiID) {
+$routes->get('/kyselyt/luo/:id', 'check_logged_in', function($kurssiID) {
     KyselynakymaController::luo($kurssiID);
 });
 
-$routes->get('/kyselyt/muokkaa/:id', function($kurssiID) {
+$routes->get('/kyselyt/muokkaa/:id', 'check_logged_in', function($kurssiID) {
     KyselynakymaController::muokkaaKyselya($kurssiID);
 });
 
-$routes->get('/kysymys/muokkaa/:id', function($kysymysID) {
+$routes->get('/kysymys/muokkaa/:id', 'check_logged_in', function($kysymysID) {
     KyselynakymaController::naytaMuokkauslomake($kysymysID);
 });
 
-$routes->post('/kysymys/muokkaa/:id', function($kysymysID) {
+$routes->post('/kysymys/muokkaa/:id', 'check_logged_in', function($kysymysID) {
     KyselynakymaController::muokkaaKysymys($kysymysID);
 });
 
-$routes->get('/kysymys/poista/:id', function($kysymysID) {
+$routes->get('/kysymys/poista/:id', 'check_logged_in', function($kysymysID) {
     KyselynakymaController::poistaKysymys($kysymysID);
 });
 
-$routes->get('/kyselyt/:id', function($id) {
-    KyselynakymaController::kyselyt($id);
+$routes->get('/kysely/poista/:id', 'check_logged_in', function($kyselyID) {
+    KyselynakymaController::poistaKysely($kyselyID);
+});
+
+$routes->get('/kyselyt/', 'check_logged_in', function() {
+    KyselynakymaController::kyselyt();
 });
 //
 //$routes->get('/', function() {

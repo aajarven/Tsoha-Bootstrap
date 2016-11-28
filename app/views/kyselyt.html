@@ -2,9 +2,11 @@
 {% block content %}
 <h1>Kyselyt</h1>
 
-<p>
-    Lyhyt ohje järjestelmän käyttöön. Lorem ipsum jne.
-</p>
+{% if message%}
+<div class="alert alert-success">
+    <p>{{message}}</p>
+</div>
+{% endif %}
 
 {% if opiskelijakurssit[0] != NULL %} 
 <h2>Vastattavat kyselyt</h2>
@@ -77,8 +79,11 @@
             {% else %}
             <td><span class="label label-default">Ei muokattavissa</span></td>
             {% endif %}
+            {% if opettajakyselyt[loop.index0].tila == 'luonnos' %}
+            <td><a class="btn btn-danger" href="/tsoha/kysely/poista/{{opettajakyselyt[loop.index0].kurssiID}}">Poista</a></td>
+            {% else %}
             <td><span class="label label-default">Ei muokattavissa</span></td>
-            <td>{{opettajakyselyt[loop.index0].tila}}</td>
+            {% endif %}
         </tr>
         {% endfor %}
     </tbody>

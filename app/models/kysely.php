@@ -88,5 +88,15 @@ class Kysely extends BaseModel {
         ));
         return $kysely;
     }
-
+    
+    public function poista(){
+//        $kysymykset = Kysymys::kyselynKysymykset($this->$kurssiID);
+//        foreach ($kysymykset as $kysymys){
+//            $kysymys->poista();
+//        }
+        
+        $query = DB::connection()->prepare('DELETE FROM Kysely '
+                . 'WHERE ID = :kyselyID');
+        $query->execute(array('kyselyID' => $this->ID));
+    }
 }

@@ -4,7 +4,8 @@
 
 class KyselynakymaController extends BaseController {
 
-    public static function kyselyt($id) {
+    public static function kyselyt() {
+        $id = $_SESSION['kayttajaID'];
         $opiskelijakurssit = Kurssi::opiskelijanKurssit($id);
         $opettajakurssit = Kurssi::opettajanKurssitKyselylla($id);
         $opettajakyselyt = Kysely::opettajanKyselyt($id);
@@ -20,7 +21,7 @@ class KyselynakymaController extends BaseController {
 
         $kysely->save();
 
-        Redirect::to('/kyselyt/muokkaa/' . $kysely->kurssiID);
+        Redirect::to('/kyselyt/muokkaa/' . $kysely->kurssiID, array('message' => 'Kysely luotu'));
     }
 
     public static function muokkaaKyselya($kurssiID) {
@@ -28,6 +29,12 @@ class KyselynakymaController extends BaseController {
         $kurssi = Kurssi::haeKurssi($kurssiID);
 
         View::make('muokkaaKyselya.html', array('kysymykset' => $kysymykset, 'kurssi' => $kurssi));
+    }
+
+    public static function poistaKysely($kyselyID) {
+        $kysely = Kysely::haeKysely($kyselyID);
+        $kysely->poista();
+        Redirect::to('/kyselyt', array('message' => 'Kysely poistettu'));
     }
 
     public static function naytaLisayslomake($kurssiID) {
@@ -42,7 +49,7 @@ class KyselynakymaController extends BaseController {
         $attributes = array(
             'teksti' => $params['kysymys']
         );
-        
+
         $kysymys = new Kysymys(array(
             'teksti' => $attributes['teksti'],
             'kurssiID' => $kurssiID,
@@ -56,16 +63,16 @@ class KyselynakymaController extends BaseController {
             Redirect::to('/kyselyt/muokkaa/' . $kysely->kurssiID);
         } else {
             $kurssi = Kurssi::haeKurssi($kurssiID);
-            View::make('lisaaKysymys.html', array('kurssi'=>$kurssi, 'virheet' => $virheet, 'attributes' => $attributes));
+            View::make('lisaaKysymys.html', array('kurssi' => $kurssi, 'virheet' => $virheet, 'attributes' => $attributes));
         }
     }
-    
-    public static function naytaMuokkauslomake($kysymysID){
+
+    public static function naytaMuokkauslomake($kysymysID) {
         $kysymys = Kysymys::haeKysymys($kysymysID);
-        View::make('muokkaaKysymysta.html', array('attributes'=>$kysymys));
+        View::make('muokkaaKysymysta.html', array('attributes' => $kysymys));
     }
-    
-    public static function muokkaaKysymys($kysymysID){
+
+    public static function muokkaaKysymys($kysymysID) {
         $alkuperainenkysymys = Kysymys::haeKysymys($kysymysID);
         $kysely = Kysely::haeKysely($alkuperainenkysymys->kyselyID);
         $kurssi = Kurssi::haeKurssi($kysely->kurssiID);
@@ -74,10 +81,10 @@ class KyselynakymaController extends BaseController {
             'ID' => $kysymysID,
             'teksti' => $params['kysymys']
         );
-        
+
         $kysymys = new Kysymys($attributes);
         $virheet = $kysymys->errors();
-        
+
         if (count($virheet) == 0) {
             $kysymys->update();
             Redirect::to('/kyselyt/muokkaa/' . $kurssi->ID, array('message' => 'Kysymys muokattu'));
@@ -86,13 +93,13 @@ class KyselynakymaController extends BaseController {
             View::make('muokkaaKysymysta.html', array('virheet' => $virheet, 'attributes' => $attributes));
         }
     }
-    
-    public static function poistaKysymys($kysymysID){
+
+    public static function poistaKysymys($kysymysID) {
         $alkuperainenkysymys = Kysymys::haeKysymys($kysymysID);
         $kysely = Kysely::haeKysely($alkuperainenkysymys->kyselyID);
         $kurssi = Kurssi::haeKurssi($kysely->kurssiID);
-        
-        $kysymys = new Kysymys(array('ID'=>$kysymysID));
+
+        $kysymys = new Kysymys(array('ID' => $kysymysID));
         $kysymys->poista();
         Redirect::to('/kyselyt/muokkaa/' . $kurssi->ID, array('message' => 'Kysyms poistettu'));
     }

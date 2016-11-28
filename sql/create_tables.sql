@@ -32,7 +32,7 @@ CREATE TABLE Kysymys (
   ID SERIAL PRIMARY KEY,
   kyselyID INTEGER,
   teksti varchar(500) NOT NULL,
-  FOREIGN KEY (kyselyID) REFERENCES Kysely (ID)
+  FOREIGN KEY (kyselyID) REFERENCES Kysely (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Vastaus (
