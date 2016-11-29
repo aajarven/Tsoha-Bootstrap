@@ -8,6 +8,10 @@
 </div>
 {% endif %}
 
+<div>
+    <a class="btn btn-success" href="{{base_path}}/kurssi/luo/">Lisää kurssi</a>
+</div>
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -31,10 +35,10 @@
             {% endif %}
             <td>
                 {% for opettaja in kurssi.opettajat %}
-                    {{opettaja}}
-                    {% if loop.last == false %}
-                        , 
-                    {% endif %}
+                {{opettaja}}
+                {% if loop.last == false %}
+                , 
+                {% endif %}
                 {% endfor %}
             </td>
             <td>{{kurssi.alkamispaiva}}</td>
