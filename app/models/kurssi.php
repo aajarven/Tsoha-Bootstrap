@@ -2,7 +2,7 @@
 
 class Kurssi extends BaseModel {
 
-    public $ID, $kurssikoodi, $nimi, $kotisivu, $alkamispaiva, $paattymispaiva;
+    public $ID, $kurssikoodi, $nimi, $kotisivu, $alkamispaiva, $paattymispaiva, $opettajat;
 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -124,6 +124,51 @@ class Kurssi extends BaseModel {
         ));
 
         return $kurssi;
+    }
+    
+    public static function haeKaikkiOpettajineen(){
+        $kurssikysely = DB::connection()->prepare('SELECT Kurssi.ID, '
+                . 'kurssi.kurssikoodi, '
+                . 'kurssi.nimi, '
+                . 'kurssi.kotisivu, '
+                . 'kurssi.alkamispaiva, '
+                . 'kurssi.paattymispaiva '
+                . 'FROM Kurssi '
+                . 'ORDER BY kurssi.ID');
+        $kurssikysely->execute();
+        $kurssit = $kurssikysely->fetchAll();
+        
+        $opettajakysely = DB::connection()->prepare('SELECT Kayttaja.ID, '
+                . 'Kayttaja.sahkoposti, '
+                . 'KurssinOpettaja.kurssiID '
+                . 'FROM Kayttaja, KurssinOpettaja '
+                . 'WHERE KurssinOpettaja.henkiloID = Kayttaja.ID '
+                . 'ORDER BY KurssinOpettaja.kurssiID');
+        $opettajakysely->execute();
+        $kaikkiOpettajat= $opettajakysely->fetchAll();
+
+        $palautettavat = array();
+        
+        $opettajaindeksi = 0;
+
+        foreach ($kurssit as $kurssi) {
+            $opettajat = array();
+            while ($opettajaindeksi < count($kaikkiOpettajat) && $kaikkiOpettajat[$opettajaindeksi]['kurssiid'] == $kurssi['id']){
+                $opettajat[] = $kaikkiOpettajat[$opettajaindeksi]['sahkoposti'];
+                $opettajaindeksi++;
+            }
+            $palautettavat[] = new Kurssi(array(
+                'ID' => $kurssi['id'],
+                'kurssikoodi' => $kurssi['kurssikoodi'],
+                'nimi' => $kurssi['nimi'],
+                'kotisivu' => $kurssi['kotisivu'],
+                'alkamispaiva' => $kurssi['alkamispaiva'],
+                'paattymispaiva' => $kurssi['paattymispaiva'],
+                'opettajat' => $opettajat
+            ));
+        }
+
+        return $palautettavat;
     }
 
 }

@@ -1,6 +1,6 @@
 INSERT INTO Kayttaja (sahkoposti, salasanaHash, suola, hallintohenkilo) VALUES ('proffa.fiksunen@helsinki.fi', 'asdfgasdfsadfasdf', 'suolaa', false);
 INSERT INTO Kayttaja (sahkoposti, salasanaHash, suola, hallintohenkilo) VALUES ('oppilas.hononen@helsinki.fi', 'asdfgasdfsadfasdsdfaf', 'suolia', false);
-INSERT INTO Kayttaja (sahkoposti, salasanaHash, suola, hallintohenkilo) VALUES ('hallintokaytava@helsinki.fi', 'afdssdfgasdfsadfasdf', 'suoleja', true);
+INSERT INTO Kayttaja (sahkoposti, salasanaHash, suola, hallintohenkilo) VALUES ('hallintokaytava@helsinki.fi', 'su5WQa5Oprei6', 'suoleja', true);
 INSERT INTO Kayttaja (sahkoposti, salasanaHash, suola, hallintohenkilo) VALUES ('opettaja.tahtinen@helsinki.fi', 'NadCARzXkd6pw', 'NaCl', false);
 INSERT INTO Kayttaja (sahkoposti, salasanaHash, suola, hallintohenkilo) VALUES ('oppilas.hooponen@helsinki.fi', 'asdfgasdfsadfasdsdfaf', 'suolia', false);
 INSERT INTO Kayttaja (sahkoposti, salasanaHash, suola, hallintohenkilo) VALUES ('oppilas.hupsunen@helsinki.fi', 'asdfgasdfsadfasdsdfaf', 'suolia', false);

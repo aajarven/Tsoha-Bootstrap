@@ -16,6 +16,10 @@ $routes->post('/kirjaudu', function() {
     KirjautumisController::kirjaudu();
 });
 
+$routes->get('/kurssit', 'check_logged_in', function(){
+    KurssinakymaController::kurssit();
+});
+
 $routes->post('/kysymys/lisaa/:ID', 'check_logged_in', function($kurssiID) {
     KyselynakymaController::lisaaKysymys($kurssiID);
 });
