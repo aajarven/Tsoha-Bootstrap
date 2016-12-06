@@ -32,8 +32,8 @@ class Kurssi extends BaseModel {
                 'kurssikoodi' => $kurssi['kurssikoodi'],
                 'nimi' => $kurssi['nimi'],
                 'kotisivu' => $kurssi['kotisivu'],
-                'alkamispaiva' => $kurssi['alkamispaiva'],
-                'paattymispaiva' => $kurssi['paattymispaiva']
+                'alkamispaiva' => new DateTime($kurssi['alkamispaiva']),
+                'paattymispaiva' => new DateTime($kurssi['paattymispaiva'])
             ));
         }
 
@@ -65,8 +65,8 @@ class Kurssi extends BaseModel {
                 'kurssikoodi' => $kurssi['kurssikoodi'],
                 'nimi' => $kurssi['nimi'],
                 'kotisivu' => $kurssi['kotisivu'],
-                'alkamispaiva' => $kurssi['alkamispaiva'],
-                'paattymispaiva' => $kurssi['paattymispaiva']
+                'alkamispaiva' => new DateTime($kurssi['alkamispaiva']),
+                'paattymispaiva' => new DateTime($kurssi['paattymispaiva'])
             ));
         }
 
@@ -94,8 +94,8 @@ class Kurssi extends BaseModel {
                 'kurssikoodi' => $kurssi['kurssikoodi'],
                 'nimi' => $kurssi['nimi'],
                 'kotisivu' => $kurssi['kotisivu'],
-                'alkamispaiva' => $kurssi['alkamispaiva'],
-                'paattymispaiva' => $kurssi['paattymispaiva']
+                'alkamispaiva' => new DateTime($kurssi['alkamispaiva']),
+                'paattymispaiva' => new DateTime($kurssi['paattymispaiva'])
             ));
         }
 
@@ -119,8 +119,8 @@ class Kurssi extends BaseModel {
             'kurssikoodi' => $rivi['kurssikoodi'],
             'nimi' => $rivi['nimi'],
             'kotisivu' => $rivi['kotisivu'],
-            'alkamispaiva' => $rivi['alkamispaiva'],
-            'paattymispaiva' => $rivi['paattymispaiva']
+            'alkamispaiva' => new DateTime($rivi['alkamispaiva']),
+            'paattymispaiva' => new DateTime($rivi['paattymispaiva'])
         ));
 
         return $kurssi;
@@ -162,8 +162,8 @@ class Kurssi extends BaseModel {
                 'kurssikoodi' => $kurssi['kurssikoodi'],
                 'nimi' => $kurssi['nimi'],
                 'kotisivu' => $kurssi['kotisivu'],
-                'alkamispaiva' => $kurssi['alkamispaiva'],
-                'paattymispaiva' => $kurssi['paattymispaiva'],
+                'alkamispaiva' => new DateTime($kurssi['alkamispaiva']),
+                'paattymispaiva' => new DateTime($kurssi['paattymispaiva']),
                 'opettajat' => $opettajat
             ));
         }

@@ -28,6 +28,10 @@ $routes->get('/kurssit', 'check_logged_in', function() {
     KurssinakymaController::kurssit();
 });
 
+$routes->post('/kurssit', 'check_logged_in', function() {
+    KurssinakymaController::muokkaaKurssia();
+});
+
 $routes->post('/kysymys/lisaa/:ID', 'check_logged_in', function($kurssiID) {
     KyselynakymaController::lisaaKysymys($kurssiID);
 });

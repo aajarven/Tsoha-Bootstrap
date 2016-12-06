@@ -47,4 +47,43 @@ class Kayttaja extends BaseModel {
         
         return $kayttaja;
     }
+    
+    public function haeEiHallintohenkilot(){
+        $query = DB::connection()->prepare('SELECT ID, sahkoposti '
+                . 'FROM Kayttaja '
+                . 'WHERE hallintohenkilo = false');
+        $query->execute();
+        $rivit = $query->fetchAll();
+
+        $henkilot= array();
+
+        foreach ($rivit as $henkilo) {
+            $henkilot[] = new Kayttaja(array(
+                'ID' => $henkilo['id'],
+                'sahkoposti' => $henkilo['sahkoposti']
+            ));
+        }
+
+        return $henkilot;
+    }
+    
+    public function haeKurssinOpettajat($kurssiID){
+        $query = DB::connection()->prepare('SELECT ID, sahkoposti '
+                . 'FROM Kayttaja, KurssinOpettaja '
+                . 'WHERE Kayttaja.ID = KurssinOpettaja.henkiloID '
+                . 'AND KurssinOpettaja.kurssiID = :ID');
+        $query->execute(array('ID' => $kurssiID));
+        $rivit = $query->fetchAll();
+
+        $henkilot= array();
+
+        foreach ($rivit as $henkilo) {
+            $henkilot[] = new Kayttaja(array(
+                'ID' => $henkilo['id'],
+                'sahkoposti' => $henkilo['sahkoposti']
+            ));
+        }
+
+        return $henkilot;
+    }
 }

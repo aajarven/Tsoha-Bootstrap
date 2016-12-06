@@ -41,9 +41,14 @@
                 {% endif %}
                 {% endfor %}
             </td>
-            <td>{{kurssi.alkamispaiva}}</td>
-            <td>{{kurssi.paattymispaiva}}</td>
-            <th><a class="btn btn-primary" href="{{base_path}}/kurssi/muokkaa/{{kurssi.id}}">Muokkaa</a></th>
+            <td>{{kurssi.alkamispaiva|date('d.m.Y')}}</td>
+            <td>{{kurssi.paattymispaiva|date('d.m.Y')}}</td>
+            <th>
+                <form method="post" action="{{base_path}}/kurssit">
+                    <input name="kurssiID" value="{{kurssi.ID}}" type="hidden">
+                    <button type="submit" class="btn btn-primary">Muokkaa</button>
+                </form>
+            </th>
         </tr>
         {% endfor %}
     </tbody>

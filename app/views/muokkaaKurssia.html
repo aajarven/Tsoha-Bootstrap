@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{kurssi.nimi}}</h1>
+
+{% if message%}
+<div class="alert alert-success">
+    <p>{{message}}</p>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/kurssit/muokkaa">
+    <div class="form-group">
+        <label>Kurssikoodi</label>
+        <input name="kurssikoodi" class="form-control" value={{kurssi.kurssikoodi}} type="number">
+    </div>
+
+    <div class="form-group">
+        <label>Kurssin nimi</label>
+        <input name="nimi" class="form-control" value="{{kurssi.nimi}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Opettaja</label>
+        <select class="form-control" name="opettajat[]" multiple="">
+            {% for opettaja in opettajat %}
+            <option value="{{opettaja.ID}}" 
+                    {% for nykyinen in nykyisetOpettajat %}
+                        {%if nykyinen.ID == opettaja.ID %}
+                            selected="selected" 
+                        {% endif %}
+                    {% endfor %}
+                    >{{opettaja.sahkoposti}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Kurssin alkupäivä</label>
+        <input type="date" name="alkupaiva" value="{{kurssi.alkamispaiva|date('Y-m-d')}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Kurssin loppupäivä</label>
+        <input type="date" name="loppupaiva" value="{{kurssi.paattymispaiva|date('Y-m-d')}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <input name="game_id" value="{{game.id}}" type="hidden">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

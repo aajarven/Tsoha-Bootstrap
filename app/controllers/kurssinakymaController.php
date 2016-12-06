@@ -6,6 +6,15 @@ class KurssinakymaController extends BaseController {
         $kurssit = Kurssi::haeKaikkiOpettajineen();
         View::make('kurssit.html', array('kurssit' => $kurssit));
     }
+    
+    public static function muokkaaKurssia() {
+        $params = $_POST;
+        
+        $kurssi = Kurssi::haeKurssi($params['kurssiID']);
+        $opettajat = Kayttaja::haeEiHallintohenkilot();
+        $kurssinOpettajat = Kayttaja::haeKurssinOpettajat($params['kurssiID']);
+        View::make('muokkaaKurssia.html', array('kurssi' => $kurssi, 'opettajat' => $opettajat, 'nykyisetOpettajat' => $kurssinOpettajat));
+    }
 
 //    public static function kyselyt() {
 //        $id = $_SESSION['kayttajaID'];
