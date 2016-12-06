@@ -25,4 +25,10 @@ class KirjautumisController extends BaseController {
         }
     }
 
+    public static function uloskirjaa() {
+        $_SESSION['kayttajaID'] = NULL;
+        $_SESSION['hallintohenkilo'] = false;
+        Redirect::to('/kirjaudu');
+    }
+
 }

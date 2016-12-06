@@ -1,11 +1,15 @@
 <?php
 
-function check_logged_in(){
-  BaseController::check_logged_in();
+function check_logged_in() {
+    BaseController::check_logged_in();
 }
 
 $routes->get('/', 'check_logged_in', function() {
-    KyselynakymaController::kyselyt();
+    if ($_SESSION['hallintohenkilo']) {
+        KurssinakymaController::kurssit();
+    } else {
+        KyselynakymaController::kyselyt();
+    }
 });
 
 $routes->get('/kirjaudu', function() {
@@ -16,7 +20,11 @@ $routes->post('/kirjaudu', function() {
     KirjautumisController::kirjaudu();
 });
 
-$routes->get('/kurssit', 'check_logged_in', function(){
+$routes->post('/logout', function() {
+    KirjautumisController::uloskirjaa();
+});
+
+$routes->get('/kurssit', 'check_logged_in', function() {
     KurssinakymaController::kurssit();
 });
 
