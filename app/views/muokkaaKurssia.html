@@ -18,6 +18,11 @@
         <label>Kurssin nimi</label>
         <input name="nimi" class="form-control" value="{{kurssi.nimi}}" type="text">
     </div>
+    
+    <div class="form-group">
+        <label>Kotisivu</label>
+        <input name="kotisivu" class="form-control" value="{{kurssi.kotisivu}}" type="text">
+    </div>
 
     <div class="form-group">
         <label>Opettaja</label>
@@ -36,12 +41,12 @@
 
     <div class="form-group">
         <label>Kurssin alkupäivä</label>
-        <input type="date" name="alkupaiva" value="{{kurssi.alkamispaiva|date('Y-m-d')}}" class="form-control">
+        <input name="alkamispaiva" type="date" value="{{kurssi.alkamispaiva|date('Y-m-d')}}" class="form-control">
     </div>
 
     <div class="form-group">
         <label>Kurssin loppupäivä</label>
-        <input type="date" name="loppupaiva" value="{{kurssi.paattymispaiva|date('Y-m-d')}}" class="form-control">
+        <input name="paattymispaiva" type="date" value="{{kurssi.paattymispaiva|date('Y-m-d')}}" class="form-control">
     </div>
 
     <div class="form-group">

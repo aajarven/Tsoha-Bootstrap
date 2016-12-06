@@ -6,6 +6,7 @@ class Kurssi extends BaseModel {
 
     public function __construct($attributes) {
         parent::__construct($attributes);
+        $this->validators = array('validoiKoodi', 'validoiNimi', 'validoiKotisivu', 'validoiAlkupvm', 'validoiLoppupvm');
     }
 
     public static function opiskelijanKurssit($opiskelijaID) {
@@ -169,6 +170,52 @@ class Kurssi extends BaseModel {
         }
 
         return $palautettavat;
+    }
+    
+    public function validoiNimi() {
+        $virheet = $this->{'validoiEiNull'}($this->nimi, "Kurssin nimiei voi olla tyhjä");
+        $virheet = array_merge($virheet, $this->{'validoiMaksimipituus'}($this->nimi, 150, "Kurssin nimen maksimipituus on 150 merkkiä"));
+        return $virheet;
+    }
+    
+    public function validoiKotisivu() {
+        $virheet = $this->{'validoiMaksimipituus'}($this->kotisivu, 500, "Kurssin nimen maksimipituus on 500 merkkiä");
+        return $virheet;
+    }
+    
+    public function validoiKoodi(){
+        $virheet = $this->{'validoiOnPositiivinenLuku'}($this->kurssikoodi, "Kurssikoodin tulee olla positiivinen luku");
+        return $virheet;
+    }
+    
+    public function validoiAlkupvm(){
+        $virheet = array();
+        
+        if ($this->alkamispaiva == false){
+            $virheet[] = "Virheellinen alkamispäivä";
+        }
+        return $virheet;
+    }
+    
+    public function validoiLoppupvm(){
+        $virheet = array();
+        
+        if ($this->paattymispaiva == false){
+            $virheet = "Virheellinen päättymispäivä";
+        }
+        
+        return $virheet;
+    }
+    
+    public function update() {
+        $query = DB::connection()->prepare('UPDATE Kurssi '
+                . 'SET kurssikoodi = :kurssikoodi, '
+                . 'nimi = :nimi, '
+                . 'kotisivu = :kotisivu, '
+                . 'alkamispaiva = :alkamispaiva, '
+                . 'paattymispaiva = :paattymispaiva '
+                . 'WHERE ID = :ID');
+        $query->execute(array('ID' => $this->ID, 'kurssikoodi' => $this->kurssikoodi, 'nimi' => $this->nimi, 'kotisivu' => $this->kotisivu, 'alkamispaiva' => date('Y-m-d', $this->alkamispaiva->getTimestamp()), 'paattymispaiva' => date('Y-m-d', $this->paattymispaiva->getTimestamp())));
     }
 
 }

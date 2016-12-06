@@ -44,5 +44,15 @@ class BaseModel {
 
         return $virheet;
     }
+    
+    public function validoiOnPositiivinenLuku($string, $virheilmoitus){
+        $virheet = array();
+        if (!is_numeric($string)){
+            $virheet[] = $virheilmoitus;
+        } elseif ((int)$string <= 0){
+            $virheet[] = $virheilmoitus;
+        }
+        return $virheet;
+    }
 
 }

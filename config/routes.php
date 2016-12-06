@@ -32,6 +32,10 @@ $routes->post('/kurssit', 'check_logged_in', function() {
     KurssinakymaController::muokkaaKurssia();
 });
 
+$routes->post('/kurssit/muokkaa', 'check_logged_in', function() {
+    KurssinakymaController::tallennaMuutokset();
+});
+
 $routes->post('/kysymys/lisaa/:ID', 'check_logged_in', function($kurssiID) {
     KyselynakymaController::lisaaKysymys($kurssiID);
 });
