@@ -165,25 +165,29 @@ Käsitekaavion perusteella rakennettu relaatiokaavio on nähtävissä kuvassa \r
 \end{figure}
 
 \section{Järjestelmän yleisrakenne}
+Tietokantasovellus noudattaa MVC-mallia, jossa kontrollerit, näkymät ja mallit on eroteltu toisistaan. Nämä sijaitsevat hakemistoissa controllers, views ja models. Apukirjastot löytyvät hakemistosta lib ja asetukset tiedostosta settings.php. Tiedostot on nimetty pienin kirjaimin, muuttujat ja funktiot camelCasella.
+
+Järjestelmä tallentaa istunnon tietoihin käyttäjän ID:n, jonka perusteella valitaan käyttäjälle näytettävät kurssit. Lisäksi tallennetaan tieto siitä, onko käyttäjä hallintohenkilö, jolloin on helppoa näyttää hallintohenkilöille kurssilistaus ja opettajille ja opiskelijoille kyselylistaus.
 
 \section{Käyttöliittymä ja järjestelmän komponentit}
+Järjestelmän näkymien väliset yhteydet ovat nähtävissä kaaviossa \ref{fig:komponentit}. Kaikki muut näkymät paitsi kirjautumissivu edellyttävät sisäänkirjautumista. Tämän jälkeen käyttäjäryhmän perusteella päätetään, näytetäänkö käyttäjälle kysely- vai kurssilistaus. Jokaisesta näkymästä on lisäksi mahdollista siirtyä takaisin kirjautumissivulle käyttäen uloskirjautumisnappulaa, mutta tätä ei ole sotkuisuuden välttämiseksi piirretty näkyviin kaavioon.
+
+\begin{figure}
+   \centering
+   \includegraphics[width=\textwidth]{kuvat/komponenttirakenne.png}
+   \caption{Järjestelmän relaatiokaavio}\label{fig:komponentit}
+\end{figure}
 
 \section{Asennustiedot}
 
 \section{Käynnistys- ja käyttöohje}
-Sovellus on käytettävissä osoitteessa \url{http://aajarven.users.cs.helsinki.fi/tsoha/}. Järjestelmää pääsee käyttämään opettajana kirjautumalla sisään sähköpostiosoitteella "opettaja.tahtinen@helsinki.fi" ja salasanalla "salasana". 
+Sovellus on käytettävissä osoitteessa \url{http://aajarven.users.cs.helsinki.fi/tsoha/}. Järjestelmää pääsee käyttämään opettajana kirjautumalla sisään sähköpostiosoitteella "opettaja.tahtinen@helsinki.fi" ja hallintohenkilönäkymään sähköpostiosoitteella "hallintokaytava@helsinki.fi. Kummassakin salasanana on "salasana". 
 
 
 %%%%% Sisältö loppuu, lähdeluettelo %%%%%
 \bibliographystyle{plain}
 \small
 \bibliography{lahteet}
-
-\appendix
-%\newpage
-\section{Tärkeä liite}
-Lorem ipsum.
-\newpage
 
 
 
