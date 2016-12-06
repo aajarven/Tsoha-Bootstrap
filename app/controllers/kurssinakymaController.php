@@ -27,12 +27,18 @@ class KurssinakymaController extends BaseController {
             'alkamispaiva' => new DateTime($params['alkamispaiva']),
             'paattymispaiva' => new DateTime($params['paattymispaiva'])
         );
+        
+        $opettajaIDt = array();
+        foreach($params['opettajat'] as $opettaja){
+            $opettajaIDt[] = $opettaja;
+        }
 
         $kurssi = new Kurssi($attributes);
         $virheet = $kurssi->errors();
 
         if (count($virheet) == 0) {
             $kurssi->update();
+            $kurssi->paivitaOpettajat($opettajaIDt);
             Redirect::to('/kurssit', array('message' => 'Kurssi muokattu'));
         } else {
             $kurssi = Kurssi::haeKurssi($kurssiID);
