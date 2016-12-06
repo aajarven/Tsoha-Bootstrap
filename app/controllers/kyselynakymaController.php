@@ -89,7 +89,7 @@ class KyselynakymaController extends BaseController {
             $kysymys->update();
             Redirect::to('/kyselyt/muokkaa/' . $kurssi->ID, array('message' => 'Kysymys muokattu'));
         } else {
-            $kurssi = Kurssi::haeKurssi($kurssiID);
+            $kurssi = Kurssi::haeKurssi($kurssi->ID);
             View::make('muokkaaKysymysta.html', array('virheet' => $virheet, 'attributes' => $attributes));
         }
     }
