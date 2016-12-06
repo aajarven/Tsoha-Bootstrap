@@ -30,8 +30,8 @@
             {% else %}
             <td><a href="{{kurssi.kotisivu}}">{{kurssi.nimi}}</a></td>
             {% endif %}
-            <td>{{kurssi.alkamispaiva}}</td>
-            <td>{{kurssi.paattymispaiva}}</td>
+            <td>{{kurssi.alkamispaiva|date('d.m.Y')}}</td>
+            <td>{{kurssi.paattymispaiva|date('d.m.Y')}}</td>
             <th><a class="btn btn-primary" href="{{base_path}}/kysely/{{kurssi.id}}">Muokkaa</a></th>
         </tr>
         {% endfor %}
@@ -64,8 +64,8 @@
             {% else %}
             <td><a href="{{kurssi.kotisivu}}">{{kurssi.nimi}}</a></td>
             {% endif %}
-            <td>{{kurssi.alkamispaiva}}</td>
-            <td>{{kurssi.paattymispaiva}}</td>
+            <td>{{kurssi.alkamispaiva|date('d.m.Y')}}</td>
+            <td>{{kurssi.paattymispaiva|date('d.m.Y')}}</td>
             {% if opettajakyselyt[loop.index0].tila == 'luonnos' %}
             <td><a class="btn btn-default" href="#">Luonnos</a></td>
             {% elseif opettajakyselyt[loop.index0].tila == 'käynnissä' %}
@@ -112,8 +112,8 @@
             {% else %}
             <td><a href="{{kurssi.kotisivu}}">{{kurssi.nimi}}</a></td>
             {% endif %}
-            <td>{{kurssi.alkamispaiva}}</td>
-            <td>{{kurssi.paattymispaiva}}</td>
+            <td>{{kurssi.alkamispaiva|date('d.m.Y')}}</td>
+            <td>{{kurssi.paattymispaiva|date('d.m.Y')}}</td>
             <td><a class="btn btn-success" href="{{base_path}}/kyselyt/luo/{{kurssi.ID}}">Luo Kysely</a></td>
         </tr>
         {% endfor %}
