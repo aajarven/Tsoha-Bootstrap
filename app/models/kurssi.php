@@ -228,5 +228,13 @@ class Kurssi extends BaseModel {
             $query->execute(array('kurssiID' => $this->ID, 'henkiloID' => $opettajaID));
         }
     }
+    
+    public function luo(){
+        $query = DB::connection()->prepare('INSERT INTO Kurssi (kurssikoodi, nimi, kotisivu, alkamispaiva, paattymispaiva) VALUES (:kurssikoodi, :nimi, :kotisivu, :alkamispaiva, :paattymispaiva) RETURNING ID');
+        $query->execute(array('kurssikoodi' => $this->kurssikoodi, 'nimi' => $this->nimi, 'kotisivu' => $this->kotisivu, 'alkamispaiva' => date('Y-m-d', $this->alkamispaiva->getTimestamp()), 'paattymispaiva' => date('Y-m-d', $this->paattymispaiva->getTimestamp())));
+
+        $rivi = $query->fetch();
+        $this->ID = $rivi['id'];
+    }
 
 }

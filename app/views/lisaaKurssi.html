@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Lisää kurssi</h1>
+
+{% if message%}
+<div class="alert alert-success">
+    <p>{{message}}</p>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/kurssi/luo">
+    <div class="form-group">
+        <label>Kurssin nimi</label>
+        <input name="nimi" class="form-control" value="{{kurssi.nimi}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Kurssikoodi</label>
+        <input name="kurssikoodi" class="form-control" value="{{kurssi.kurssikoodi}}" type="number">
+    </div>
+
+    <div class="form-group">
+        <label>Kotisivu</label>
+        <input name="kotisivu" class="form-control" value="{{kurssi.kotisivu}}" type="text">
+    </div>
+
+    <div class="form-group">
+        <label>Opettaja</label>
+        <select class="form-control" name="opettajat[]" multiple="">
+            {% for opettaja in opettajat %}
+            <option value="{{opettaja.ID}}" 
+                    {% for nykyinen in nykyisetOpettajat %}
+                    {%if nykyinen.ID == opettaja.ID %}
+                    selected="selected" 
+                    {% endif %}
+                    {% endfor %}
+                    >{{opettaja.sahkoposti}}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Kurssin alkupäivä</label>
+        <input name="alkamispaiva" type="date" value="{{kurssi.alkamispaiva|date('Y-m-d')}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>Kurssin loppupäivä</label>
+        <input name="paattymispaiva" type="date" value="{{kurssi.paattymispaiva|date('Y-m-d')}}" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Lisää</button>
+    </div>
+</form>
+{% endblock %}
