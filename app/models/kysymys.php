@@ -77,5 +77,5 @@ class Kysymys extends BaseModel {
 
         return $kysymys;
     }
-
+    
 }

@@ -67,11 +67,22 @@
             <td>{{kurssi.alkamispaiva|date('d.m.Y')}}</td>
             <td>{{kurssi.paattymispaiva|date('d.m.Y')}}</td>
             {% if opettajakyselyt[loop.index0].tila == 'luonnos' %}
-            <td><a class="btn btn-default" href="#">Luonnos</a></td>
+            <td>
+                <form method="post" action="{{base_path}}/kyselyt">
+                    <input name="kurssiID" value="{{kurssi.ID}}" type="hidden">
+                    <button type="submit" class="btn btn-default">Luonnos</button>
+                </form>
+            </td>
             {% elseif opettajakyselyt[loop.index0].tila == 'käynnissä' %}
-            <td><a class="btn btn-primary" href="#">Käynnissä</a></td>
+            <td>
+                <form method="post" action="{{base_path}}/kyselyt">
+                    <input name="kurssiID" value="{{kurssi.ID}}" type="hidden">
+                    <button type="submit" class="btn btn-primary">Käynnissä</button>
+                </form>
+            </td>
             {% else %}
-            <td><a class="btn btn-success" href="#">Päättynyt</a></td>
+            <td>
+                <a class="btn btn-success" href="#">Päättynyt</a></td>
             {% endif %}
             <td>{{opettajakyselyt[loop.index0].vastaajamaara}}</td>
             {% if opettajakyselyt[loop.index0].tila == 'luonnos' %}

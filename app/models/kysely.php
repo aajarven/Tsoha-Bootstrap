@@ -73,7 +73,7 @@ class Kysely extends BaseModel {
         ));
         return $kysely;
     }
-    
+
     public static function haeKysely($kyselyID) {
         $query = DB::connection()->prepare('SELECT Kysely.ID, Kysely.kurssiID, kysely.status '
                 . 'FROM Kysely '
@@ -88,15 +88,43 @@ class Kysely extends BaseModel {
         ));
         return $kysely;
     }
-    
-    public function poista(){
+
+    public function poista() {
 //        $kysymykset = Kysymys::kyselynKysymykset($this->$kurssiID);
 //        foreach ($kysymykset as $kysymys){
 //            $kysymys->poista();
 //        }
-        
+
         $query = DB::connection()->prepare('DELETE FROM Kysely '
                 . 'WHERE ID = :kyselyID');
         $query->execute(array('kyselyID' => $this->ID));
     }
+
+    public static function haeTilaID($kyselyID) {
+        $query = DB::connection()->prepare('SELECT status AS tilaID '
+                . 'FROM Kysely '
+                . 'WHERE ID=:ID');
+        $query->execute(array('ID' => $kyselyID));
+
+        $rivi = $query->fetch();
+
+        return $rivi['tilaid'];
+    }
+
+    /**
+     * Muuttaa kysymyksen tilan seuraavaksi ellei kysymys ole jo viimeisessä tilassa.
+     * @param type $kysymysID muutettavan kysymyksen ID
+     */
+    public static function muutaTilaa($kyselyID) {
+        $maksimi = Tila::suurinSallittu();
+        $nykyinenTilaID = Kysely::haeTilaID($kyselyID);
+
+        if ($nykyinenTilaID < $maksimi) {
+            $query = DB::connection()->prepare('UPDATE Kysely '
+                    . 'SET status = status+1 '
+                    . 'WHERE ID = :ID');
+            $query->execute(array('ID' => $kyselyID));
+        }
+    }
+
 }

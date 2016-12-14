@@ -37,11 +37,11 @@ $routes->post('/kurssit/muokkaa', 'check_logged_in', function() {
 });
 
 $routes->post('/kysymys/lisaa/:ID', 'check_logged_in', function($kurssiID) {
-    KyselynakymaController::lisaaKysymys($kurssiID);
+    KysymysController::lisaaKysymys($kurssiID);
 });
 
 $routes->get('/kysymys/lisaa/:ID', 'check_logged_in', function($kurssiID) {
-    KyselynakymaController::naytaLisayslomake($kurssiID);
+    KysymysController::naytaLisayslomake($kurssiID);
 });
 
 $routes->get('/kyselyt/luo/:id', 'check_logged_in', function($kurssiID) {
@@ -53,15 +53,15 @@ $routes->get('/kyselyt/muokkaa/:id', 'check_logged_in', function($kurssiID) {
 });
 
 $routes->get('/kysymys/muokkaa/:id', 'check_logged_in', function($kysymysID) {
-    KyselynakymaController::naytaMuokkauslomake($kysymysID);
+    KysymysController::naytaMuokkauslomake($kysymysID);
 });
 
 $routes->post('/kysymys/muokkaa/:id', 'check_logged_in', function($kysymysID) {
-    KyselynakymaController::muokkaaKysymys($kysymysID);
+    KysymysController::muokkaaKysymys($kysymysID);
 });
 
 $routes->get('/kysymys/poista/:id', 'check_logged_in', function($kysymysID) {
-    KyselynakymaController::poistaKysymys($kysymysID);
+    KysymysController::poistaKysymys($kysymysID);
 });
 
 $routes->get('/kysely/poista/:id', 'check_logged_in', function($kyselyID) {
@@ -71,55 +71,7 @@ $routes->get('/kysely/poista/:id', 'check_logged_in', function($kyselyID) {
 $routes->get('/kyselyt/', 'check_logged_in', function() {
     KyselynakymaController::kyselyt();
 });
-//
-//$routes->get('/', function() {
-//    HelloWorldController::index();
-//});
-//
-//$routes->get('/hiekkalaatikko', function() {
-//    HelloWorldController::sandbox();
-//});
-//
-//$routes->get('/etusivu', function() {
-//    HelloWorldController::etusivu();
-//});
-//
-//$routes->get('/opettajanakyma', function() {
-//    HelloWorldController::opettajanakyma();
-//});
-//
-//$routes->get('/laitosnakyma', function() {
-//    HelloWorldController::laitosnakyma();
-//});
-//
-//$routes->get('/tiedekuntanakyma', function() {
-//    HelloWorldController::tiedekuntanakyma();
-//});
-//
-//$routes->get('/tulokset-opettaja', function() {
-//    HelloWorldController::tulokset_opettaja();
-//});
-//
-//$routes->get('/tulokset-hallinto', function() {
-//    HelloWorldController::tulokset_hallinto();
-//});
-//
-//$routes->get('/muokkaus-kysely', function() {
-//    HelloWorldController::muokkaus_kysely();
-//});
-//
-//$routes->get('/muokkaus-kysymys', function() {
-//    HelloWorldController::muokkaus_kysymys();
-//});
-//
-//$routes->get('/kysely', function() {
-//    HelloWorldController::kysely();
-//});
-//
-//$routes->get('/muokkaus-kysymyspaletti', function() {
-//    HelloWorldController::muokkaus_kysymyspaletti();
-//});
-//
-//$routes->get('/muokkaus-kurssi', function() {
-//    HelloWorldController::muokkaus_kurssi();
-//});
+
+$routes->post('/kyselyt/', 'check_logged_in', function() {
+    KysymysController::muutaStatus();
+});
