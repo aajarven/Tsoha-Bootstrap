@@ -53,12 +53,12 @@ Järjestelmää käyttävät opiskelijat, opettajat ja hallintohenkilöt. Näist
     \item[Kyselyn tulosten tarkasteleminen] Päättyneiden kyselyiden tuloksia voi tarkastella. Tällöin näytetään kunkin kysymyksen vastausjakauma.
     \item[Kyselyn luominen] Opettaja pystyy luomaan opettamalleen kurssille kyselyn. Tällöin avataan tyhjä kysely muokkaustilassa.
     \item[Kyselyn muokkaaminen] Opettaja voi muokata oman kyselynsä kysymyksiä. Tällöin hänelle näytetään lista nykyisistä kysymyksistä ja annetaan mahdollisuus poistaa niitä tai siirtyä luomaan uusia tai muokkaamaan vanhoja. Kyselyn muokkaaminen ei onnistu enää kun kysely on avattu opiskelijoille.
-    \item[Kyselyn tilan muuttaminen] Kurssin opettaja voi muuttaa kyselyn tilan luonnoksesta käynnissä olevaksi, jolloin opiskelijat voivat vastata kyselyyn, tai käynnissä olevasta päättyneeksi, jolloin kyselyyn ei voi enää vastata mutta kyselyn tiedot ovat hallintohenkilöiden nähtävissä.
+    \item[Kyselyn tilan muuttaminen] Kurssin opettaja voi muuttaa kyselyn tilan luonnoksesta käynnissä olevaksi, jolloin opiskelijat voivat vastata kyselyyn, tai käynnissä olevasta päättyneeksi, jolloin kyselyyn ei voi enää vastata mutta kyselyn opettaja voi tarkastella kyselyn tuloksia.
     \item[Kysymyksen lisääminen] Kysymystä lisättäessä opettaja voi antaa kysymyksen. Kysymykset on muotoiltava niin, että niihin voidaan vastata asteikolla 1-5 tai EOS.
     \item[Kysymyksen muokkaaminen] Kysymyksen muokkaaminen toimii vastaavasti kuin kysymyksen lisääminen, mutta oletusarvoina käytetään kysymyksen nykytilaa.
     \item[Kurssin lisääminen] Laitoksen hallintohenkilöt voivat lisätä kursseja. Tällöin kurssista annetaan sen nimi, opettaja tai opettajat, kurssin alkamis- ja päättymispäivät ja mahdollisesti linkki kurssin kotisivulle.
     \item[Kurssin muokkaaminen] Laitoksen hallintohenkilöt voivat muokata kurssien tietoja niistä kursseista, joilla ei ole kyselyitä, jotka olisivat olleet vastattavissa.
-    \item[Kurssin poistaminen] Laitoksen hallintohenkilöt voivat poistaa kursseja, joilla ei ole vielä kyselyä, joka olisi ollut vastattavissa.
+    \item[Kurssin poistaminen] Laitoksen hallintohenkilöt voivat poistaa kursseja. Tällöin myös kurssiin liittyvät kyselyt, kysymykset ja vastaukset poistuvat.
 \end{description}
 
 \section{Järjestelmän tietosisältö}
@@ -70,11 +70,9 @@ Järjestelmää käyttävät opiskelijat, opettajat ja hallintohenkilöt. Näist
 
 Järjestelmän tietosisältö on esitetty kuvassa \ref{fig:kasitekaavio}. Tarkemmat esittelyt kustakin käsitekaavion tietokohteesta ovat nähtävissä alla sekä taulukoissa \ref{tietokohde_ensimmainen}--\ref{tietokohde_viimeinen}.
 
-Kukin järjestelmän käyttäjä kuuluu vähintään yhteen käyttäjäryhmään, joita ovat esimerkiksi opiskelija ja opettaja. Käyttäjäryhmän lisäksi jokainen henkilö kuuluu johonkin organisaatioon. Näitä ovat esimerkiksi eri laitokset sekä tiedekunta. Hallintohenkilöiden ja opettajien osalta organisaatio määräytyy työsopimuksen perusteella ja opiskelijoilla pääaineen. Tietokanta on suunniteltu sellaiseksi, että saman käyttäjän kuuluminen useaan käyttäjäryhmään ja/tai organisaatioon (esimerkiksi opettaja tietojenkäsittelytieteen laitoksella ja opiskelija fysiikan laitoksella) on mahdollista, mutta tämän työn puitteissa ei todennäköisesti ole ajankäytöllisesti järkevää toteuttaa tukea myös ohjelmalogiikalle.
+Kukin järjestelmän käyttäjä on joko hallintohenkilö tai muu henkilö (opettaja ja/tai opiskelija). Lisäksi käyttäjästä tallennetaan käyttäjätunnuksena toimiva sähköpostiosoite sekä hashattu salasana ja suola.
 
-Kysely edustaa tietyn kurssin palautekyselyä. Kyselyn tilat on tallennettu erilliseen tauluun, jotta tilojen nimitykset on helppo pitää konsistentteina muutoksista huolimatta ja tilojen arvojoukko on helppo tarkastaa. Kutakin kurssia kohden on yksi korkeintaan yksi kysely ja kukin kysely voi koostua mielivaltaisestsa määrästä kysymyksiä. Kukin kysymys kuuluu joko yhteen kyselyyn (kurssikohtaiset kysymykset) tai yhteen organisaatioon (laitos- tai tiedekuntakohtaiset kysymykset).
-
-Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysymys kuuluu kuitenkin vain yhteen kurssiin tai organisaatioon. Kysymykset voivat olla vastaustyypiltään joko avoimia vai monivalintoja. Mikäli kyseessä on avoimen vastauksen kysymys, tallennetaan siihen saadut vastaukset AvoinVastaus-tauluun, jossa on yksi rivi kunkin opiskelijan kutakin vastausta kohden. Mikäli kyseessä on monivalinta, sisältää taulu Monivalintavastaus opiskelijan valitseman vastausvaihtoehdon järjestysluvun, jonka perusteella voidaan Monivalintavaihtoehto-taulusta hakea kyseistä vastausta vastaava selkokielinen teksti.
+Kysely edustaa tietyn kurssin palautekyselyä. Kyselyn tilat on tallennettu erilliseen tauluun, jotta tilojen nimitykset on helppo pitää konsistentteina muutoksista huolimatta ja tilojen arvojoukko on helppo tarkastaa. Kutakin kurssia kohden on yksi korkeintaan yksi kysely ja kukin kysely voi koostua mielivaltaisestsa määrästä kysymyksiä. Kukin kysymys kuuluu yhteen kyselyyn. Kutakin kysymystä kohden voi olla mielivaltainen määrä vastauksia, kuitenkin korkeintaan yhtä paljon kuin kurssilla on opiskelijoita. Vastaus-tauluun tallennetaan vastauksen antaneen opiskelijan ID, kyseisen kysymyksen ID sekä opiskelijan antama vastaus. Vastaus tallennetaan lukuna 0-5 joista 1-5 edustavat varsinaisia numeerisia vastauksia ja 0 vaihtoehtoa "en osaa tai halua vastata".
 
 
 \begin{table}[h!]
@@ -113,7 +111,7 @@ Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysy
   Attribuutti & Arvojoukko & Kuvailu \\
   \hline
   Kurssi & Viite kurssiin & Kurssi, johon kysely kuuluu. \\
-  Tila & Viite tila-tauluun & Kurssin tämänhetkinen tila. \\
+  Status & Viite tila-tauluun & Kurssin tämänhetkinen tila. \\
   \hline
 \end{tabularx}
 \end{table}
@@ -124,7 +122,6 @@ Kysely koostuu kysymyksistä, joita voi olla mielivaltainen määrä. Kukin kysy
   \hline
   Attribuutti & Arvojoukko & Kuvailu \\
   \hline
-  OrganisaatioID & Viite organisaatioon tai NULL & Viite organisaatioon, mikäli kyseessä on organisaatiokohtainen (laitos tai tiedekunta) kysymys \\
   KyselyID & Viite kyselyyn tai NULL & Viite kyselyyn, mikäli kyseessä on tiettyyn kyselyyn liittyvä kysymys \\
   Teksti & Merkkijono, korkeintaan 500 merkkiä & Opiskelijalle näytettävä kysymys \\
   \hline
@@ -165,7 +162,7 @@ Käsitekaavion perusteella rakennettu relaatiokaavio on nähtävissä kuvassa \r
 \end{figure}
 
 \section{Järjestelmän yleisrakenne}
-Tietokantasovellus noudattaa MVC-mallia, jossa kontrollerit, näkymät ja mallit on eroteltu toisistaan. Nämä sijaitsevat hakemistoissa controllers, views ja models. Apukirjastot löytyvät hakemistosta lib ja asetukset tiedostosta settings.php. Tiedostot on nimetty pienin kirjaimin, muuttujat ja funktiot camelCasella.
+Tietokantasovellus noudattaa MVC-mallia, jossa kontrollerit, näkymät ja mallit on eroteltu toisistaan. Nämä sijaitsevat hakemistoissa controllers, views ja models. Apukirjastot löytyvät hakemistosta lib. Tiedostot on nimetty pienin kirjaimin, muuttujat ja funktiot camelCasella.
 
 Järjestelmä tallentaa istunnon tietoihin käyttäjän ID:n, jonka perusteella valitaan käyttäjälle näytettävät kurssit. Lisäksi tallennetaan tieto siitä, onko käyttäjä hallintohenkilö, jolloin on helppoa näyttää hallintohenkilöille kurssilistaus ja opettajille ja opiskelijoille kyselylistaus.
 
@@ -179,9 +176,18 @@ Järjestelmän näkymien väliset yhteydet ovat nähtävissä kaaviossa \ref{fig
 \end{figure}
 
 \section{Asennustiedot}
+Muiden on mahdollista asentaa sovellus users-palvelimelle kopioimalla sen tiedostot (github-repositorio \url{https://github.com/aajarven/Tsoha-Bootstrap}) kohdepalvelimelle sopivaan hakemistoon ja tämän jälkeen muokkaamalla projektin config-kansiossa olevassa envi\-ronment.sh-tiedostossa määritellyt username ja project folder sopiviksi. Muulle kuin usersille asennettaessa täytyy myös muita skriptejä muokata jonkin verran, muun muassa deploy.sh -skriptin tulee tietää palvelimen osoite.
+
 
 \section{Käynnistys- ja käyttöohje}
-Sovellus on käytettävissä osoitteessa \url{http://aajarven.users.cs.helsinki.fi/tsoha/}. Järjestelmää pääsee käyttämään opettajana kirjautumalla sisään sähköpostiosoitteella "opettaja.tahtinen@helsinki.fi" ja hallintohenkilönäkymään sähköpostiosoitteella "hallintokaytava@helsinki.fi. Kummassakin salasanana on "salasana". 
+Sovellus on käytettävissä osoitteessa \url{http://aajarven.users.cs.helsinki.fi/tsoha/}. Järjestelmää pääsee käyttämään opettajana kirjautumalla sisään sähköpostiosoitteella "opettaja.tahtinen@helsinki.fi", hallintohenkilönäkymään sähköpostiosoitteella "hallintokaytava@helsinki.fi ja opiskelijana "oppilas.hononen@helsinki.fi". Jokaisessa salasanana on "salasana". 
+
+\section{Testaus ja jatkokehitysideat}
+Järjestelmää on testattu käyttämällä järjestelmän toimintoja monipuolisesti aina merkittävien muutosten tekemisen jälkeen. Automatisoituja yksikkötestejä ei ole. Testauksessa ohjelman lopullisesta versiosta ei löytynyt bugeja.
+
+Järjestelmä toimii muuten menettelevästi, mutta olisi mielekästä mikäli opettaja voisi saada kurssinsa palautteesta jonkinlaisen yhteenvedon, joka voisi sisältää esimerkiksi eri kysymysten vastausten keski- ja hajontalukuja. Lisäksi olisi hauskaa toteuttaa alkuperäisessä tehtävänannossa mainittu organisaatiohierarkia, jossa kaikilla esimerkiksi laitoksen kursseilla on yhteisiä kysymyksiä, joiden vastauksia kyseisen organisaatiotason hallintohenkilöt pääsevät tarkastelemaan.
+
+Ohjelman suurimpana puutteena pidän kuitenkin sitä, ettei nettikäyttöliittymä tarjoa mahdollisuutta lisätä opiskelijoita kurssille, vaan tämä on tehtävä suoraan tietokantaan. Mikäli aikaa olisi enemmän, olisi tämä ensimmäinen ominaisuus jonka toteuttaisin.
 
 
 %%%%% Sisältö loppuu, lähdeluettelo %%%%%
