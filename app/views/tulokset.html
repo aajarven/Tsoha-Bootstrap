@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{kurssi.nimi}}</h1>
+
+{% if message%}
+<div class="alert alert-success">
+    <p>{{message}}</p>
+</div>
+{% endif %}
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th></th>
+            <th colspan='6'>Vastausmäärät</th>
+        </tr>
+        <tr>
+            <th>Kysymys</th>
+            <th>1</th>
+            <th>2</th>
+            <th>3</th>
+            <th>4</th>
+            <th>5</th>
+            <th>En osaa tai halua vastata</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {%for tulos in tulokset %}
+        <tr>
+            <td>{{tulos.kysymys}}</td>
+            <td>{{tulos.ykkoset}}</td>
+            <td>{{tulos.kakkoset}}</td>
+            <td>{{tulos.kolmoset}}</td>
+            <td>{{tulos.neloset}}</td>
+            <td>{{tulos.vitoset}}</td>
+            <td>{{tulos.eos}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -91,3 +91,7 @@ $routes->post('/kysely/vastaa', 'check_logged_in', function() {
 $routes->post('/vastaus', 'check_logged_in', function() {
     KyselynakymaController::tallennaVastaukset();
 });
+
+$routes->post('/kysely/tulokset', 'check_logged_in', function() {
+    KyselynakymaController::naytaTulokset();
+});

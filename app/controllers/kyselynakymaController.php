@@ -59,5 +59,18 @@ class KyselynakymaController extends BaseController {
         Redirect::to('/kyselyt', array('message' => 'Vastaukset tallennettu'));
         
     }
+    
+    public static function naytaTulokset(){
+        $params = $_POST;
+        $kysymykset = Kysymys::kyselynKysymykset($params['kurssiID']);
+        $kurssi = Kurssi::haeKurssi($params['kurssiID']);
+        
+        $tulokset = array();
+        foreach ($kysymykset as $kysymys){
+            $tulokset[] = Kyselytulos::haeTulosKysymykselle($kysymys->ID);
+        }
+        
+        View::make('tulokset.html', array('tulokset' => $tulokset, 'kurssi' => $kurssi));
+    }
 
 }
