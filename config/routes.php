@@ -83,3 +83,11 @@ $routes->get('/kyselyt/', 'check_logged_in', function() {
 $routes->post('/kyselyt/', 'check_logged_in', function() {
     KysymysController::muutaStatus();
 });
+
+$routes->post('/kysely/vastaa', 'check_logged_in', function() {
+    KyselynakymaController::naytaVastauslomake();
+});
+
+$routes->post('/vastaus', 'check_logged_in', function() {
+    KyselynakymaController::tallennaVastaukset();
+});

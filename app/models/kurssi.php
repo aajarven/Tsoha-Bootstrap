@@ -40,6 +40,44 @@ class Kurssi extends BaseModel {
 
         return $kurssit;
     }
+    
+    public static function opiskelijanVastaamattomatKurssit($opiskelijaID) {
+        $query = DB::connection()->prepare('SELECT Kurssi.ID, '
+                . 'kurssi.kurssikoodi, '
+                . 'kurssi.nimi, '
+                . 'kurssi.kotisivu, '
+                . 'kurssi.alkamispaiva, '
+                . 'kurssi.paattymispaiva '
+                . 'FROM Kurssi, Kysely, Tila, KurssinOsallistuja WHERE '
+                . 'Kurssi.ID = Kysely.kurssiID '
+                . 'AND Kysely.status = Tila.ID '
+                . 'AND KurssinOsallistuja.KurssiID = Kurssi.ID '
+                . 'AND KurssinOsallistuja.henkiloID =:ID '
+                . 'AND Tila.nimi ~ \'käynnissä\''
+                . 'AND Kurssi.ID NOT IN '
+                . '(SELECT Kysely.kurssiID '
+                . 'FROM Kysely, Kysymys, Vastaus '
+                . 'WHERE Kysely.ID = Kysymys.kyselyID '
+                . 'AND Vastaus.kysymysID = Kysymys.ID '
+                . 'AND Vastaus.opiskelijaID = :ID)');
+        $query->execute(array('ID' => $opiskelijaID));
+        $rivit = $query->fetchAll();
+
+        $kurssit = array();
+
+        foreach ($rivit as $kurssi) {
+            $kurssit[] = new Kurssi(array(
+                'ID' => $kurssi['id'],
+                'kurssikoodi' => $kurssi['kurssikoodi'],
+                'nimi' => $kurssi['nimi'],
+                'kotisivu' => $kurssi['kotisivu'],
+                'alkamispaiva' => new DateTime($kurssi['alkamispaiva']),
+                'paattymispaiva' => new DateTime($kurssi['paattymispaiva'])
+            ));
+        }
+
+        return $kurssit;
+    }
 
     public static function opettajanKurssitKyselylla($opettajaID) {
         $query = DB::connection()->prepare('SELECT Kurssi.ID, '

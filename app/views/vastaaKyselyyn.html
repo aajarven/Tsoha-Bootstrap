@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{kurssi.nimi}}</h1>
+
+{% if message%}
+<div class="alert alert-success">
+    <p>{{message}}</p>
+</div>
+{% endif %}
+
+<form method="post" action="{{base_path}}/vastaus">
+
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Kysymys</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for kysymys in kysymykset %}
+            <tr>
+                <td><label>{{kysymys.teksti}}</label></td>
+                <td><input type="radio" name="{{kysymys.ID}}" value="1" checked> 1</td>
+                <td><input type="radio" name="{{kysymys.ID}}" value="2" checked> 2</td>
+                <td><input type="radio" name="{{kysymys.ID}}" value="3" checked> 3</td>
+                <td><input type="radio" name="{{kysymys.ID}}" value="4" checked> 4</td>
+                <td><input type="radio" name="{{kysymys.ID}}" value="5" checked> 5</td>
+                <td><input type="radio" name="{{kysymys.ID}}" value="0" checked> En osaa tai halua vastata</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+    <div class="form-group">
+        <input name="kurssiID" value="{{kurssi.ID}}" type="hidden">
+        <button type="submit" class="btn btn-primary">Tallenna</button>
+    </div>
+</form>
+{% endblock %}

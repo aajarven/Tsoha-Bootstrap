@@ -32,7 +32,11 @@
             {% endif %}
             <td>{{kurssi.alkamispaiva|date('d.m.Y')}}</td>
             <td>{{kurssi.paattymispaiva|date('d.m.Y')}}</td>
-            <th><a class="btn btn-primary" href="{{base_path}}/kysely/{{kurssi.id}}">Muokkaa</a></th>
+            <td><form method="post" action="{{base_path}}/kysely/vastaa">
+                    <input name="kurssiID" value="{{kurssi.ID}}" type="hidden">
+                    <button type="submit" class="btn btn-primary">Vastaa</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
@@ -131,4 +135,9 @@
     </tbody>
 </table>
 {% endif %}
+
+{% if opiskelijakurssit|length == 0 and opettajakurssit|length == 0 and kyselyttomatKurssit|length == 0 %}
+<p>Ei näytettäviä kyselyjä</p>
+{% endif %}
+
 {% endblock %}

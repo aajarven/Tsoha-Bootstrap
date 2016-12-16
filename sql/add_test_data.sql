@@ -54,10 +54,10 @@ INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Sain riittävästi tukea lask
 INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Anna kokonaisarvosana kurssille');
 INSERT INTO Kysymys (kyselyID, teksti) VALUES (4, 'Anna kokonaisarvosana laskareille');
 
-INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 1, 5);
-INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 2, 3);
-INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 3, 4);
-INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 4, 3);
+-- INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 1, 5);
+-- INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 2, 3);
+-- INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 3, 4);
+-- INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 4, 3);
 
 INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 5, 4);
 INSERT INTO Vastaus (opiskelijaID, kysymysID, vastaus) VALUES (2, 6, 3);

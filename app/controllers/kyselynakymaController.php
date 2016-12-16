@@ -6,7 +6,7 @@ class KyselynakymaController extends BaseController {
 
     public static function kyselyt() {
         $id = $_SESSION['kayttajaID'];
-        $opiskelijakurssit = Kurssi::opiskelijanKurssit($id);
+        $opiskelijakurssit = Kurssi::opiskelijanVastaamattomatKurssit($id);
         $opettajakurssit = Kurssi::opettajanKurssitKyselylla($id);
         $opettajakyselyt = Kysely::opettajanKyselyt($id);
         $kyselyttomatKurssit = Kurssi::opettajanKurssitIlmanKyselya($id);
@@ -35,6 +35,29 @@ class KyselynakymaController extends BaseController {
         $kysely = Kysely::haeKysely($kyselyID);
         $kysely->poista();
         Redirect::to('/kyselyt', array('message' => 'Kysely poistettu'));
+    }
+    
+    public static function naytaVastauslomake(){
+        $params = $_POST;
+        $kurssiID = $params['kurssiID'];
+        $kysymykset = Kysymys::kyselynKysymykset($kurssiID);
+        $kurssi = Kurssi::haeKurssi($kurssiID);
+        
+        View::make('vastaaKyselyyn.html', array('kysymykset' => $kysymykset, 'kurssi' => $kurssi));
+    }
+    
+    public static function tallennaVastaukset(){
+        $params = $_POST;
+        $kysymykset = Kysymys::kyselynKysymykset($params['kurssiID']);
+        $kayttajaID = $_SESSION['kayttajaID'];
+        
+        foreach ($kysymykset as $kysymys){
+            $vastaus = new Vastaus(array('opiskelijaID' => $kayttajaID, 'kysymysID' => $kysymys->ID, 'vastaus' => intval($params[$kysymys->ID])));
+            $vastaus->lisaaVastaus();
+        }
+        
+        Redirect::to('/kyselyt', array('message' => 'Vastaukset tallennettu'));
+        
     }
 
 }
