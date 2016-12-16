@@ -14,7 +14,7 @@ Laitos ja tiedekunta voivat hakea yhteenvedon kurssin tai kurssien kysymysten tu
 Työn toteutuksessa käytetyt työkalut ovat php ja PostgreSQL.
 
 ## Järjestelmän käyttö
-Järjestelmään voi kirjautua sähköpostiosoitteella "opettaja.tahtinen@helsinki.fi" tai "hallintokaytava@helsinki.fi" ja salasanalla "salasana".
+Järjestelmään voi kirjautua sähköpostiosoitteella "opettaja.tahtinen@helsinki.fi", "oppilas.hononen@helsinki.fi" tai "hallintokaytava@helsinki.fi" ja salasanalla "salasana".
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
