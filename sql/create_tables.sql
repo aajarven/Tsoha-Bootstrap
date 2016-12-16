@@ -24,7 +24,7 @@ CREATE TABLE Kysely (
   ID SERIAL PRIMARY KEY,
   kurssiID INTEGER NOT NULL,
   status INTEGER DEFAULT 1,
-  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID),
+  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID) ON DELETE CASCADE,
   FOREIGN KEY (status) REFERENCES Tila (ID)
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE Vastaus (
   kysymysID INTEGER,
   vastaus INTEGER NOT NULL,
   PRIMARY KEY (opiskelijaID, kysymysID),
-  FOREIGN KEY (kysymysID) REFERENCES Kysymys (ID),
+  FOREIGN KEY (kysymysID) REFERENCES Kysymys (ID) ON DELETE CASCADE,
   FOREIGN KEY (opiskelijaID) REFERENCES Kayttaja (ID)
 );
 
@@ -49,7 +49,7 @@ CREATE TABLE KurssinOsallistuja (
   kurssiID INTEGER,
   PRIMARY KEY (henkiloID, kurssiID),
   FOREIGN KEY (henkiloID) REFERENCES Kayttaja (ID),
-  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
+  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID) ON DELETE CASCADE
 );
 
 CREATE TABLE KurssinOpettaja (
@@ -57,5 +57,5 @@ CREATE TABLE KurssinOpettaja (
   kurssiID INTEGER,
   PRIMARY KEY (henkiloID, kurssiID),
   FOREIGN KEY (henkiloID) REFERENCES Kayttaja (ID),
-  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID)
+  FOREIGN KEY (kurssiID) REFERENCES Kurssi (ID) ON DELETE CASCADE
 );
