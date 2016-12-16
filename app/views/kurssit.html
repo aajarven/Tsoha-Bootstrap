@@ -21,6 +21,7 @@
             <th>Kurssin alku</th>
             <th>Kurssin loppu</th>
             <th>Muokkaa</th>
+            <th>Poista</th>
         </tr>
     </thead>
 
@@ -47,6 +48,12 @@
                 <form method="post" action="{{base_path}}/kurssit">
                     <input name="kurssiID" value="{{kurssi.ID}}" type="hidden">
                     <button type="submit" class="btn btn-primary">Muokkaa</button>
+                </form>
+            </th>
+            <th>
+                <form method="post" action="{{base_path}}/kurssit/poista">
+                    <input name="kurssiID" value="{{kurssi.ID}}" type="hidden">
+                    <button type="submit" class="btn btn-danger">Poista</button>
                 </form>
             </th>
         </tr>

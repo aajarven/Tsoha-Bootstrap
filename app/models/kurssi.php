@@ -274,5 +274,11 @@ class Kurssi extends BaseModel {
         $rivi = $query->fetch();
         $this->ID = $rivi['id'];
     }
+    
+        public function poista() {
+        $query = DB::connection()->prepare('DELETE FROM Kurssi '
+                . 'WHERE ID = :kurssiID');
+        $query->execute(array('kurssiID' => $this->ID));
+    }
 
 }

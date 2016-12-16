@@ -76,4 +76,11 @@ class KurssinakymaController extends BaseController {
         }
     }
     
+    public static function poistaKurssi() {
+        $kurssiID = $_POST['kurssiID'];
+        $kurssi = Kurssi::haeKurssi($kurssiID);
+        $kurssi->poista();
+        Redirect::to('/kurssit', array('message' => 'Kurssi poistettu'));
+    }
+    
 }
